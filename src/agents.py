@@ -112,7 +112,14 @@ def format_execution(e: ExecutionReport, max_chars: int = 2500) -> str:
     if e.stderr.strip() and e.status != "ok":
         out += f"Errors:\n{cut(e.stderr)}\n"
     if e.status == "no_answer":
-        out += "Problem: the program did not print a line starting with 'ANSWER:' followed by a JSON object.\n"
+        bad = [l.strip() for l in (e.stdout or "").splitlines() if "ANSWER" in l.upper()]
+        if bad:
+            out += (f"Problem: this line is not valid: {bad[-1][:300]!r}. After 'ANSWER: ' there must "
+                    "be exactly one valid JSON object, for example ANSWER: {\"key\": 1.5}. "
+                    "Use print(\"ANSWER: \" + json.dumps(result_dict)).\n")
+        else:
+            out += ("Problem: the program did not print a line starting with 'ANSWER:' followed by a "
+                    "JSON object. Use print(\"ANSWER: \" + json.dumps(result_dict)).\n")
     return out
 
 

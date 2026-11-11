@@ -19,7 +19,10 @@ def parse_answer(stdout: str) -> dict | None:
     """Return the JSON object from the last `ANSWER:` line, or None if there is none."""
     matches = ANSWER_RE.findall(stdout or "")
     for raw in reversed(matches):
-        for candidate in (raw, raw.replace("'", '"'), _fix_python_literals(raw)):
+        cands = [raw, raw.replace("'", '"'), _fix_python_literals(raw)]
+        if raw.startswith("{{") and raw.endswith("}}"):   # a common f-string slip: ANSWER: {{...}}
+            cands.append(_fix_python_literals(raw[1:-1]))
+        for candidate in cands:
             try:
                 obj = json.loads(candidate)
                 if isinstance(obj, dict):

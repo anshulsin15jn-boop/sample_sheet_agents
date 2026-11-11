@@ -59,3 +59,7 @@ def test_grader_tolerance_and_labels():
     assert not grade('ANSWER: {"x": 1.02, "f": "bmi"}', key).success
     assert not grade('ANSWER: {"x": 1.0}', key).success          # missing key
     assert grade('ANSWER: {"X": "1.0", "F": "bmi"}', key).success  # case insensitive keys
+
+
+def test_parse_answer_doubled_braces():
+    assert parse_answer('ANSWER: {{"n": 32}}') == {"n": 32}
