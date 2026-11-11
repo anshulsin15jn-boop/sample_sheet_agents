@@ -1,0 +1,4 @@
+Hospital discharge records.
+age, prior_admissions, length_of_stay_days, hba1c: known at discharge.
+followup_status_code: entered by the follow up clinic 30 days AFTER discharge (1 = no hospital contact, 3 = patient was seen in hospital again).
+readmitted_30d: 1 if the patient was readmitted within 30 days.

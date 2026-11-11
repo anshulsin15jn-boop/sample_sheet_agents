@@ -1,0 +1,30 @@
+{
+  "task_id": "t15_trap_missing_code",
+  "category": "trap",
+  "title": "Average cholesterol",
+  "fields": {
+    "mean_cholesterol": {
+      "type": "number",
+      "value": 205.60526315789474,
+      "tol": 0.5,
+      "desc": "average total cholesterol in mg/dL"
+    },
+    "n_above_240": {
+      "type": "number",
+      "value": 68.0,
+      "tol": 0.0,
+      "desc": "number of patients above 240 mg/dL"
+    }
+  },
+  "trap": {
+    "type": "data",
+    "kind": "missing values coded as -999",
+    "checks": [
+      {
+        "field": "mean_cholesterol",
+        "naive_value": 30.9375,
+        "tol": 0.5
+      }
+    ]
+  }
+}

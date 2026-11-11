@@ -1,0 +1,19 @@
+{
+  "task_id": "t10_diabetes_correlation",
+  "category": "classic",
+  "title": "Strongest correlate of diabetes progression",
+  "fields": {
+    "feature": {
+      "type": "label",
+      "value": "bmi",
+      "desc": "column name, exactly as in the CSV header"
+    },
+    "correlation": {
+      "type": "number",
+      "value": 0.5864501344746885,
+      "tol": 0.005,
+      "desc": "signed Pearson correlation with target"
+    }
+  },
+  "trap": null
+}

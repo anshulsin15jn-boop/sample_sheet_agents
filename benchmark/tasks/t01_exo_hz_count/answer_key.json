@@ -1,0 +1,14 @@
+{
+  "task_id": "t01_exo_hz_count",
+  "category": "anshul",
+  "title": "Small planets in a simple habitable zone",
+  "fields": {
+    "n_planets": {
+      "type": "number",
+      "value": 32.0,
+      "tol": 0.0,
+      "desc": "integer number of planets meeting the rule"
+    }
+  },
+  "trap": null
+}

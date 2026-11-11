@@ -1,0 +1,2 @@
+Columns (NASA Exoplanet Archive, composite parameters table):
+pl_name planet name; hostname star name; discoverymethod how it was found; disc_year discovery year; pl_rade radius in Earth radii; pl_bmasse mass in Earth masses; pl_orbper orbital period in days; pl_insol insolation flux relative to Earth; pl_eqt equilibrium temperature in kelvin; st_teff star temperature in kelvin; st_mass star mass in solar masses; sy_dist distance in parsecs.

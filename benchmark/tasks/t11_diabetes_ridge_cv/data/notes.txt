@@ -1,0 +1,1 @@
+Diabetes data (scikit-learn, unscaled). 442 patients. Features: age, sex, bmi, bp (blood pressure), s1 to s6 (blood serum measurements). `target` is a measure of disease progression one year after baseline.

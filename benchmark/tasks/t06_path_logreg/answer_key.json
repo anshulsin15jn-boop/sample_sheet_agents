@@ -1,0 +1,14 @@
+{
+  "task_id": "t06_path_logreg",
+  "category": "anshul",
+  "title": "PathMNIST logistic regression baseline",
+  "fields": {
+    "test_accuracy": {
+      "type": "number",
+      "value": 0.31666666666666665,
+      "tol": 0.02,
+      "desc": "test accuracy between 0 and 1"
+    }
+  },
+  "trap": null
+}

@@ -1,0 +1,1 @@
+Wine recognition data (scikit-learn). 13 chemical measurements of wines from three cultivars. `target` is the cultivar: 0, 1, or 2.

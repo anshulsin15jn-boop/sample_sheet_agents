@@ -1,0 +1,1 @@
+Clinic lipid panel export. cholesterol_mg_dl is total cholesterol in mg/dL. The lab system writes -999 when a measurement was not taken.

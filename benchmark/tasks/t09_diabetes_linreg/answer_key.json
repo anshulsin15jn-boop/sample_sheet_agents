@@ -1,0 +1,20 @@
+{
+  "task_id": "t09_diabetes_linreg",
+  "category": "classic",
+  "title": "Diabetes linear regression",
+  "fields": {
+    "test_r2": {
+      "type": "number",
+      "value": 0.45260276297191815,
+      "tol": 0.005,
+      "desc": "R squared on the test part"
+    },
+    "test_rmse": {
+      "type": "number",
+      "value": 53.85344583676599,
+      "tol": 0.1,
+      "desc": "RMSE on the test part"
+    }
+  },
+  "trap": null
+}

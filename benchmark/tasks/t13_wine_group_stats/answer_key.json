@@ -1,0 +1,31 @@
+{
+  "task_id": "t13_wine_group_stats",
+  "category": "classic",
+  "title": "Wine group statistics",
+  "fields": {
+    "n_class_0": {
+      "type": "number",
+      "value": 59.0,
+      "tol": 0.0,
+      "desc": "number of wines with target 0"
+    },
+    "n_class_1": {
+      "type": "number",
+      "value": 71.0,
+      "tol": 0.0,
+      "desc": "number of wines with target 1"
+    },
+    "n_class_2": {
+      "type": "number",
+      "value": 48.0,
+      "tol": 0.0,
+      "desc": "number of wines with target 2"
+    },
+    "highest_alcohol_class": {
+      "type": "label",
+      "value": "0",
+      "desc": "the target value (0, 1, or 2) with the highest mean alcohol"
+    }
+  },
+  "trap": null
+}

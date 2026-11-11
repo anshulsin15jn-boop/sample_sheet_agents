@@ -1,0 +1,30 @@
+{
+  "task_id": "t18_trap_units",
+  "category": "trap",
+  "title": "Average height and BMI",
+  "fields": {
+    "mean_height_cm": {
+      "type": "number",
+      "value": 170.05999999999997,
+      "tol": 0.2,
+      "desc": "average height in centimeters"
+    },
+    "mean_bmi": {
+      "type": "number",
+      "value": 22.41026817740636,
+      "tol": 0.1,
+      "desc": "average BMI"
+    }
+  },
+  "trap": {
+    "type": "data",
+    "kind": "units mix up (one site recorded meters)",
+    "checks": [
+      {
+        "field": "mean_height_cm",
+        "naive_value": 87.971675,
+        "tol": 0.2
+      }
+    ]
+  }
+}

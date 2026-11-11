@@ -1,0 +1,24 @@
+{
+  "task_id": "t16_trap_leakage",
+  "category": "trap",
+  "title": "Readmission model at discharge",
+  "fields": {
+    "test_accuracy": {
+      "type": "number",
+      "value": 0.69,
+      "tol": 0.03,
+      "desc": "test accuracy between 0 and 1"
+    }
+  },
+  "trap": {
+    "type": "data",
+    "kind": "a column that leaks the label",
+    "checks": [
+      {
+        "field": "test_accuracy",
+        "naive_value": 0.975,
+        "tol": 0.02
+      }
+    ]
+  }
+}

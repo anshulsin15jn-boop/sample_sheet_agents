@@ -1,0 +1,1 @@
+Screening study. marker_a, marker_b, marker_c: standardized lab markers. clinician_comment: free text typed by clinicians. positive: 1 if the condition was confirmed.

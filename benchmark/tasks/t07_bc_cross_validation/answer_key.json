@@ -1,0 +1,14 @@
+{
+  "task_id": "t07_bc_cross_validation",
+  "category": "classic",
+  "title": "Breast cancer cross validation",
+  "fields": {
+    "mean_cv_accuracy": {
+      "type": "number",
+      "value": 0.9789163173420278,
+      "tol": 0.005,
+      "desc": "mean accuracy over the 5 folds"
+    }
+  },
+  "trap": null
+}

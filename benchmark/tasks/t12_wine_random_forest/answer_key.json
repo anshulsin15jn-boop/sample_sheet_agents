@@ -1,0 +1,20 @@
+{
+  "task_id": "t12_wine_random_forest",
+  "category": "classic",
+  "title": "Wine random forest",
+  "fields": {
+    "test_accuracy": {
+      "type": "number",
+      "value": 1.0,
+      "tol": 0.02,
+      "desc": "test accuracy between 0 and 1"
+    },
+    "n_test": {
+      "type": "number",
+      "value": 54.0,
+      "tol": 0.0,
+      "desc": "number of rows in the test part"
+    }
+  },
+  "trap": null
+}

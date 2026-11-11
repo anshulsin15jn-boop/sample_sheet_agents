@@ -1,0 +1,14 @@
+{
+  "task_id": "t11_diabetes_ridge_cv",
+  "category": "classic",
+  "title": "Diabetes ridge regression cross validation",
+  "fields": {
+    "mean_cv_r2": {
+      "type": "number",
+      "value": 0.4890110239873751,
+      "tol": 0.005,
+      "desc": "mean R squared over the 5 folds"
+    }
+  },
+  "trap": null
+}

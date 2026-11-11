@@ -1,0 +1,2 @@
+pathmnist_small.npz holds a small random subsample of PathMNIST (colon tissue patches, 28x28 RGB, uint8). Arrays: x_train (1000,28,28,3), y_train (1000,), x_test (300,28,28,3), y_test (300,). Labels: 0 adipose, 1 background, 2 debris, 3 lymphocytes, 4 mucus, 5 smooth muscle, 6 normal colon mucosa, 7 cancer associated stroma, 8 colorectal adenocarcinoma epithelium.
+Load it with numpy.load('data/pathmnist_small.npz').

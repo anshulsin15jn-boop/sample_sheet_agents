@@ -1,0 +1,1 @@
+Wisconsin breast cancer data (scikit-learn). 30 numeric features computed from cell nucleus images. Column `target`: 0 = malignant, 1 = benign.

@@ -1,0 +1,20 @@
+{
+  "task_id": "t05_path_class_counts",
+  "category": "anshul",
+  "title": "PathMNIST class balance",
+  "fields": {
+    "most_common_train_label": {
+      "type": "number",
+      "value": 5.0,
+      "tol": 0.0,
+      "desc": "integer label that appears most often in y_train"
+    },
+    "adipose_fraction_test": {
+      "type": "number",
+      "value": 0.17333333333333334,
+      "tol": 0.002,
+      "desc": "fraction of y_test equal to 0, between 0 and 1"
+    }
+  },
+  "trap": null
+}

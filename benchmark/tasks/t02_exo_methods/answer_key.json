@@ -1,0 +1,26 @@
+{
+  "task_id": "t02_exo_methods",
+  "category": "anshul",
+  "title": "Discovery methods",
+  "fields": {
+    "n_transit": {
+      "type": "number",
+      "value": 4785.0,
+      "tol": 0.0,
+      "desc": "number of Transit planets"
+    },
+    "n_radial_velocity": {
+      "type": "number",
+      "value": 1204.0,
+      "tol": 0.0,
+      "desc": "number of Radial Velocity planets"
+    },
+    "median_period_transit_days": {
+      "type": "number",
+      "value": 7.970940113,
+      "tol": 0.01,
+      "desc": "median orbital period of Transit planets in days"
+    }
+  },
+  "trap": null
+}

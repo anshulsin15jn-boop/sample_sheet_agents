@@ -1,0 +1,1 @@
+Study enrollment export. One record per enrolled patient; patient_id identifies the patient. smoker: 1 = current smoker. Note: the export tool has been known to write some records more than once.

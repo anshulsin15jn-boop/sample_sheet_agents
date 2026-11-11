@@ -1,0 +1,1 @@
+Two site anthropometry study. height_cm: standing height in centimeters. weight_kg: weight in kilograms.

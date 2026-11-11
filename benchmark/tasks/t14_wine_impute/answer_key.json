@@ -1,0 +1,20 @@
+{
+  "task_id": "t14_wine_impute",
+  "category": "classic",
+  "title": "Wine missing value cleanup",
+  "fields": {
+    "n_rows_with_missing": {
+      "type": "number",
+      "value": 42.0,
+      "tol": 0.0,
+      "desc": "rows with at least one missing value"
+    },
+    "mean_magnesium_after_impute": {
+      "type": "number",
+      "value": 100.1067415730337,
+      "tol": 0.01,
+      "desc": "mean magnesium after median filling"
+    }
+  },
+  "trap": null
+}

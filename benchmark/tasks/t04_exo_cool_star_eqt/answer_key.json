@@ -1,0 +1,20 @@
+{
+  "task_id": "t04_exo_cool_star_eqt",
+  "category": "anshul",
+  "title": "Equilibrium temperature of small planets around cool stars",
+  "fields": {
+    "n_planets": {
+      "type": "number",
+      "value": 305.0,
+      "tol": 0.0,
+      "desc": "number of such planets with a known pl_eqt"
+    },
+    "median_eqt_k": {
+      "type": "number",
+      "value": 471.2,
+      "tol": 0.5,
+      "desc": "median pl_eqt in kelvin"
+    }
+  },
+  "trap": null
+}

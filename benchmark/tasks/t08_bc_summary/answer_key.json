@@ -1,0 +1,26 @@
+{
+  "task_id": "t08_bc_summary",
+  "category": "classic",
+  "title": "Breast cancer summary statistics",
+  "fields": {
+    "n_malignant": {
+      "type": "number",
+      "value": 212.0,
+      "tol": 0.0,
+      "desc": "number of malignant tumors"
+    },
+    "mean_radius_malignant": {
+      "type": "number",
+      "value": 17.462830188679245,
+      "tol": 0.01,
+      "desc": "average mean_radius of malignant tumors"
+    },
+    "mean_radius_benign": {
+      "type": "number",
+      "value": 12.146523809523808,
+      "tol": 0.01,
+      "desc": "average mean_radius of benign tumors"
+    }
+  },
+  "trap": null
+}

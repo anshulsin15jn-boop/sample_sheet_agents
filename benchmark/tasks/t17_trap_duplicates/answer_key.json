@@ -1,0 +1,41 @@
+{
+  "task_id": "t17_trap_duplicates",
+  "category": "trap",
+  "title": "Study enrollment summary",
+  "fields": {
+    "n_patients": {
+      "type": "number",
+      "value": 300.0,
+      "tol": 0.0,
+      "desc": "number of enrolled patients"
+    },
+    "mean_age": {
+      "type": "number",
+      "value": 49.413333333333334,
+      "tol": 0.05,
+      "desc": "average age in years"
+    },
+    "smoker_fraction": {
+      "type": "number",
+      "value": 0.21333333333333335,
+      "tol": 0.002,
+      "desc": "fraction of patients who smoke, between 0 and 1"
+    }
+  },
+  "trap": {
+    "type": "data",
+    "kind": "duplicated rows",
+    "checks": [
+      {
+        "field": "n_patients",
+        "naive_value": 376.0,
+        "tol": 0
+      },
+      {
+        "field": "mean_age",
+        "naive_value": 51.909574468085104,
+        "tol": 0.05
+      }
+    ]
+  }
+}
