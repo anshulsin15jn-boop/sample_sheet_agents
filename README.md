@@ -43,7 +43,4 @@ Answer key labels will come from the GenoTEX release (CC BY 4.0). Sample descrip
 public NCBI GEO series matrix files. Full citations and a statement of what is new here will be
 added in Phase 4.
 
-## Archived earlier work
 
-An earlier exploration in this repo (does a reviewer agent help a coder agent team?) is kept in
-`archive/reviewer_study/`.
