@@ -64,8 +64,8 @@ def accuracy_figure(atts, split, out):
         ax.bar(xs, ms, width * 0.92, color=MODEL_COLORS[model], label=model, edgecolor=SURFACE, linewidth=1)
         if any(sds):
             ax.errorbar(xs, ms, yerr=sds, fmt="none", ecolor=TEXT, elinewidth=1, capsize=3)
-        for x, m in zip(xs, ms):
-            ax.text(x, m + 2, f"{m:.0f}", ha="center", va="bottom", fontsize=8, color=TEXT)
+        for x, m, sd in zip(xs, ms, sds):
+            ax.text(x, m + sd + 1.5, f"{m:.0f}", ha="center", va="bottom", fontsize=8, color=TEXT)
     if rule:
         r = 100 * statistics.mean(rule)
         ax.axhline(r, color=MUTED, linestyle="--", linewidth=1.5)
@@ -90,7 +90,7 @@ def error_figure(atts, split, out):
     cnt = Counter((e["model"], e["method"], e["category"]) for e in errs)
     cats = [c for c in CATEGORIES if any(cnt[(m, me, c)] for m, me in keys)]
     data = [[cnt[(m, me, c)] / len(n_rep[(m, me)]) for (m, me) in keys] for c in cats]
-    fig, ax = plt.subplots(figsize=(1.0 + 0.75 * len(keys), 0.5 + 0.42 * len(cats)), dpi=150)
+    fig, ax = plt.subplots(figsize=(2.0 + 0.75 * len(keys), 0.5 + 0.42 * len(cats)), dpi=150)
     fig.patch.set_facecolor(SURFACE)
     cmap = LinearSegmentedColormap.from_list("blue", ["#f3f7fd", "#2a78d6", "#0d3a73"])
     vmax = max(max(r) for r in data) if data else 1
@@ -100,13 +100,15 @@ def error_figure(atts, split, out):
             if v:
                 ax.text(j, i, f"{v:.1f}".rstrip("0").rstrip("."), ha="center", va="center", fontsize=8,
                         color="white" if v > 0.55 * vmax else TEXT)
-    labels = [("R" if m == "none" else f"{me}\n{m.replace('qwen2.5', 'q2.5')}") for m, me in keys]
-    ax.set_xticks(range(len(keys)), labels, fontsize=7, color=TEXT)
+    short = {"qwen2.5:3b": "3b", "qwen2.5-coder:3b": "coder"}
+    labels = [("R" if m == "none" else f"{me}\n{short.get(m, m)}") for m, me in keys]
+    ax.set_xticks(range(len(keys)), labels, fontsize=8, color=TEXT)
     ax.set_yticks(range(len(cats)), cats, fontsize=8, color=TEXT)
     ax.tick_params(length=0)
     for s in ax.spines.values():
         s.set_visible(False)
-    ax.set_title("Failed cohorts by error type (count per repeat)", fontsize=10, color=TEXT, loc="left")
+    ax.set_title("Failed cohorts by error type (count per repeat)\n3b = qwen2.5:3b, coder = qwen2.5-coder:3b",
+                 fontsize=10, color=TEXT, loc="left")
     fig.tight_layout()
     fig.savefig(out)
     plt.close(fig)

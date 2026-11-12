@@ -1,0 +1,562 @@
+{
+  "split": "test",
+  "rows": [
+    {
+      "model": "none",
+      "method": "R",
+      "repeats": 1,
+      "accuracy": 0.5580329963661007,
+      "accuracy_sd": 0.0,
+      "macro_f1": 0.6050730403385205,
+      "macro_f1_sd": 0.0,
+      "row_acc": 0.775,
+      "row_acc_sd": 0.0,
+      "solved": 13,
+      "solved_sd": 0.0,
+      "invalid_rate": 0,
+      "invalid_rate_sd": 0.0,
+      "coverage": 0.6279844083342506,
+      "coverage_sd": 0.0,
+      "selective_accuracy": 0.9151321113487875,
+      "selective_accuracy_sd": 0.0,
+      "pooled_accuracy": 0.5343656615050258,
+      "pooled_accuracy_sd": 0.0,
+      "seconds": 0.002043415000002824,
+      "seconds_sd": 0.0,
+      "calls": 0,
+      "calls_sd": 0.0,
+      "n_cohorts": 40,
+      "n_cohorts_sd": 0.0
+    },
+    {
+      "model": "qwen2.5-coder:3b",
+      "method": "A",
+      "repeats": 2,
+      "accuracy": 0.7627047549391484,
+      "accuracy_sd": 0.05422930235205881,
+      "macro_f1": 0.7701745209719634,
+      "macro_f1_sd": 0.049527578277855235,
+      "row_acc": 0.8875,
+      "row_acc_sd": 0.017677669529663705,
+      "solved": 24.5,
+      "solved_sd": 3.5355339059327378,
+      "invalid_rate": 0.05,
+      "invalid_rate_sd": 0.035355339059327376,
+      "coverage": 0.8294949177518856,
+      "coverage_sd": 0.03274456977743959,
+      "selective_accuracy": 0.9218782345396406,
+      "selective_accuracy_sd": 0.022993538288289716,
+      "pooled_accuracy": 0.8769356153219234,
+      "pooled_accuracy_sd": 0.017864963501860658,
+      "seconds": 8.46223447375014,
+      "seconds_sd": 4.013634541147703,
+      "calls": 1,
+      "calls_sd": 0.0,
+      "n_cohorts": 40,
+      "n_cohorts_sd": 0.0
+    },
+    {
+      "model": "qwen2.5-coder:3b",
+      "method": "C",
+      "repeats": 2,
+      "accuracy": 0.7345809319313805,
+      "accuracy_sd": 0.027739042228832632,
+      "macro_f1": 0.7557756959629289,
+      "macro_f1_sd": 0.02503114843409325,
+      "row_acc": 0.85,
+      "row_acc_sd": 0.0,
+      "solved": 23,
+      "solved_sd": 2.8284271247461903,
+      "invalid_rate": 0.075,
+      "invalid_rate_sd": 0.0,
+      "coverage": 0.8111565868533146,
+      "coverage_sd": 0.030776883443916162,
+      "selective_accuracy": 0.9042541509514854,
+      "selective_accuracy_sd": 0.0017365322220771707,
+      "pooled_accuracy": 0.5937924477044281,
+      "pooled_accuracy_sd": 0.011045541950075117,
+      "seconds": 18.26546041124984,
+      "seconds_sd": 0.5922395384858509,
+      "calls": 1,
+      "calls_sd": 0.0,
+      "n_cohorts": 40,
+      "n_cohorts_sd": 0.0
+    },
+    {
+      "model": "qwen2.5-coder:3b",
+      "method": "D",
+      "repeats": 2,
+      "accuracy": 0.7550909136398332,
+      "accuracy_sd": 0.043512274509690134,
+      "macro_f1": 0.7621462092109517,
+      "macro_f1_sd": 0.04932036637109092,
+      "row_acc": 0.85,
+      "row_acc_sd": 0.0,
+      "solved": 24.5,
+      "solved_sd": 3.5355339059327378,
+      "invalid_rate": 0.075,
+      "invalid_rate_sd": 0.0,
+      "coverage": 0.8540095950856865,
+      "coverage_sd": 0.02070909987802729,
+      "selective_accuracy": 0.8900901485323618,
+      "selective_accuracy_sd": 0.028853336377322802,
+      "pooled_accuracy": 0.7324096712849769,
+      "pooled_accuracy_sd": 0.21226650182318257,
+      "seconds": 19.53916261000004,
+      "seconds_sd": 0.7428107380310559,
+      "calls": 1,
+      "calls_sd": 0.0,
+      "n_cohorts": 40,
+      "n_cohorts_sd": 0.0
+    },
+    {
+      "model": "qwen2.5-coder:3b",
+      "method": "E",
+      "repeats": 2,
+      "accuracy": 0.676489000768919,
+      "accuracy_sd": 0.005546344304558326,
+      "macro_f1": 0.6490748945949883,
+      "macro_f1_sd": 0.004760908321140693,
+      "row_acc": 0.75,
+      "row_acc_sd": 0.03535533905932741,
+      "solved": 18,
+      "solved_sd": 1.4142135623730951,
+      "invalid_rate": 0.075,
+      "invalid_rate_sd": 0.0,
+      "coverage": 0.8323635350057397,
+      "coverage_sd": 0.015912826879706774,
+      "selective_accuracy": 0.8109757037167058,
+      "selective_accuracy_sd": 0.0017945139688967959,
+      "pooled_accuracy": 0.5664900842162457,
+      "pooled_accuracy_sd": 0.013542794912700792,
+      "seconds": 28.87290820499993,
+      "seconds_sd": 5.918566840042511,
+      "calls": 2.7375,
+      "calls_sd": 0.017677669529663625,
+      "n_cohorts": 40,
+      "n_cohorts_sd": 0.0
+    },
+    {
+      "model": "qwen2.5:3b",
+      "method": "A",
+      "repeats": 2,
+      "accuracy": 0.7168206947457578,
+      "accuracy_sd": 0.028937449015150097,
+      "macro_f1": 0.7113777828473538,
+      "macro_f1_sd": 0.02819949905226518,
+      "row_acc": 0.85,
+      "row_acc_sd": 0.0,
+      "solved": 19,
+      "solved_sd": 2.8284271247461903,
+      "invalid_rate": 0.05,
+      "invalid_rate_sd": 0.035355339059327376,
+      "coverage": 0.8165907703707462,
+      "coverage_sd": 0.0003301259841524691,
+      "selective_accuracy": 0.8855885282807205,
+      "selective_accuracy_sd": 0.04090645059804337,
+      "pooled_accuracy": 0.584691659875034,
+      "pooled_accuracy_sd": 0.013734891294441215,
+      "seconds": 13.26177475625001,
+      "seconds_sd": 1.5743805120662997,
+      "calls": 1,
+      "calls_sd": 0.0,
+      "n_cohorts": 40,
+      "n_cohorts_sd": 0.0
+    },
+    {
+      "model": "qwen2.5:3b",
+      "method": "C",
+      "repeats": 2,
+      "accuracy": 0.5875903742829701,
+      "accuracy_sd": 0.006491749544169629,
+      "macro_f1": 0.5744753518497756,
+      "macro_f1_sd": 0.0219032868001708,
+      "row_acc": 0.8374999999999999,
+      "row_acc_sd": 0.017677669529663705,
+      "solved": 13,
+      "solved_sd": 2.8284271247461903,
+      "invalid_rate": 0.125,
+      "invalid_rate_sd": 0.0,
+      "coverage": 0.6338878474600254,
+      "coverage_sd": 0.02164805110738738,
+      "selective_accuracy": 0.9174877600193168,
+      "selective_accuracy_sd": 0.01837259214271118,
+      "pooled_accuracy": 0.7931268676989949,
+      "pooled_accuracy_sd": 0.006147084215693977,
+      "seconds": 20.522860013750083,
+      "seconds_sd": 0.05277239908137547,
+      "calls": 1,
+      "calls_sd": 0.0,
+      "n_cohorts": 40,
+      "n_cohorts_sd": 0.0
+    },
+    {
+      "model": "qwen2.5:3b",
+      "method": "D",
+      "repeats": 2,
+      "accuracy": 0.6311123378217784,
+      "accuracy_sd": 0.011567454753194322,
+      "macro_f1": 0.6543342126470572,
+      "macro_f1_sd": 0.00361813653105493,
+      "row_acc": 0.875,
+      "row_acc_sd": 0.0,
+      "solved": 15.5,
+      "solved_sd": 0.7071067811865476,
+      "invalid_rate": 0.0875,
+      "invalid_rate_sd": 0.017677669529663695,
+      "coverage": 0.6617053816797152,
+      "coverage_sd": 0.00299761013420028,
+      "selective_accuracy": 0.9582032844900492,
+      "selective_accuracy_sd": 0.014437064281867062,
+      "pooled_accuracy": 0.6591279543602282,
+      "pooled_accuracy_sd": 0.2031419236905118,
+      "seconds": 21.654802402499932,
+      "seconds_sd": 3.70520081932121,
+      "calls": 1,
+      "calls_sd": 0.0,
+      "n_cohorts": 40,
+      "n_cohorts_sd": 0.0
+    },
+    {
+      "model": "qwen2.5:3b",
+      "method": "E",
+      "repeats": 2,
+      "accuracy": 0.552357852128591,
+      "accuracy_sd": 0.049371699313672364,
+      "macro_f1": 0.5486471576803952,
+      "macro_f1_sd": 0.038242146231079806,
+      "row_acc": 0.675,
+      "row_acc_sd": 0.03535533905932733,
+      "solved": 11.5,
+      "solved_sd": 2.1213203435596424,
+      "invalid_rate": 0.1,
+      "invalid_rate_sd": 0.035355339059327376,
+      "coverage": 0.6775330324601017,
+      "coverage_sd": 0.08999396755552475,
+      "selective_accuracy": 0.8325394804428738,
+      "selective_accuracy_sd": 0.03672266463908989,
+      "pooled_accuracy": 0.4975550122249389,
+      "pooled_accuracy_sd": 0.024588336862775947,
+      "seconds": 37.11039008875005,
+      "seconds_sd": 4.324052296768024,
+      "calls": 2.8,
+      "calls_sd": 0.07071067811865482,
+      "n_cohorts": 40,
+      "n_cohorts_sd": 0.0
+    }
+  ],
+  "error_counts": [
+    {
+      "model": "none",
+      "method": "R",
+      "category": "abstained",
+      "count": 3
+    },
+    {
+      "model": "none",
+      "method": "R",
+      "category": "synonym or code missed",
+      "count": 8
+    },
+    {
+      "model": "none",
+      "method": "R",
+      "category": "values left unlabelled",
+      "count": 10
+    },
+    {
+      "model": "none",
+      "method": "R",
+      "category": "wrong row",
+      "count": 6
+    },
+    {
+      "model": "qwen2.5-coder:3b",
+      "method": "A",
+      "category": "flipped labels",
+      "count": 1
+    },
+    {
+      "model": "qwen2.5-coder:3b",
+      "method": "A",
+      "category": "invalid output",
+      "count": 4
+    },
+    {
+      "model": "qwen2.5-coder:3b",
+      "method": "A",
+      "category": "other disease as disease",
+      "count": 2
+    },
+    {
+      "model": "qwen2.5-coder:3b",
+      "method": "A",
+      "category": "synonym or code missed",
+      "count": 10
+    },
+    {
+      "model": "qwen2.5-coder:3b",
+      "method": "A",
+      "category": "values left unlabelled",
+      "count": 9
+    },
+    {
+      "model": "qwen2.5-coder:3b",
+      "method": "A",
+      "category": "wrong row",
+      "count": 5
+    },
+    {
+      "model": "qwen2.5-coder:3b",
+      "method": "C",
+      "category": "invalid output",
+      "count": 6
+    },
+    {
+      "model": "qwen2.5-coder:3b",
+      "method": "C",
+      "category": "other",
+      "count": 2
+    },
+    {
+      "model": "qwen2.5-coder:3b",
+      "method": "C",
+      "category": "other disease as disease",
+      "count": 4
+    },
+    {
+      "model": "qwen2.5-coder:3b",
+      "method": "C",
+      "category": "synonym or code missed",
+      "count": 4
+    },
+    {
+      "model": "qwen2.5-coder:3b",
+      "method": "C",
+      "category": "values left unlabelled",
+      "count": 12
+    },
+    {
+      "model": "qwen2.5-coder:3b",
+      "method": "C",
+      "category": "wrong row",
+      "count": 6
+    },
+    {
+      "model": "qwen2.5-coder:3b",
+      "method": "D",
+      "category": "abstained",
+      "count": 5
+    },
+    {
+      "model": "qwen2.5-coder:3b",
+      "method": "D",
+      "category": "invalid output",
+      "count": 6
+    },
+    {
+      "model": "qwen2.5-coder:3b",
+      "method": "D",
+      "category": "other",
+      "count": 1
+    },
+    {
+      "model": "qwen2.5-coder:3b",
+      "method": "D",
+      "category": "other disease as disease",
+      "count": 8
+    },
+    {
+      "model": "qwen2.5-coder:3b",
+      "method": "D",
+      "category": "synonym or code missed",
+      "count": 2
+    },
+    {
+      "model": "qwen2.5-coder:3b",
+      "method": "D",
+      "category": "values left unlabelled",
+      "count": 3
+    },
+    {
+      "model": "qwen2.5-coder:3b",
+      "method": "D",
+      "category": "wrong row",
+      "count": 6
+    },
+    {
+      "model": "qwen2.5-coder:3b",
+      "method": "E",
+      "category": "flipped labels",
+      "count": 2
+    },
+    {
+      "model": "qwen2.5-coder:3b",
+      "method": "E",
+      "category": "invalid output",
+      "count": 6
+    },
+    {
+      "model": "qwen2.5-coder:3b",
+      "method": "E",
+      "category": "other",
+      "count": 5
+    },
+    {
+      "model": "qwen2.5-coder:3b",
+      "method": "E",
+      "category": "other disease as disease",
+      "count": 5
+    },
+    {
+      "model": "qwen2.5-coder:3b",
+      "method": "E",
+      "category": "synonym or code missed",
+      "count": 5
+    },
+    {
+      "model": "qwen2.5-coder:3b",
+      "method": "E",
+      "category": "values left unlabelled",
+      "count": 7
+    },
+    {
+      "model": "qwen2.5-coder:3b",
+      "method": "E",
+      "category": "wrong row",
+      "count": 14
+    },
+    {
+      "model": "qwen2.5:3b",
+      "method": "A",
+      "category": "invalid output",
+      "count": 4
+    },
+    {
+      "model": "qwen2.5:3b",
+      "method": "A",
+      "category": "other disease as disease",
+      "count": 4
+    },
+    {
+      "model": "qwen2.5:3b",
+      "method": "A",
+      "category": "synonym or code missed",
+      "count": 8
+    },
+    {
+      "model": "qwen2.5:3b",
+      "method": "A",
+      "category": "values left unlabelled",
+      "count": 18
+    },
+    {
+      "model": "qwen2.5:3b",
+      "method": "A",
+      "category": "wrong row",
+      "count": 8
+    },
+    {
+      "model": "qwen2.5:3b",
+      "method": "C",
+      "category": "invalid output",
+      "count": 10
+    },
+    {
+      "model": "qwen2.5:3b",
+      "method": "C",
+      "category": "other disease as disease",
+      "count": 1
+    },
+    {
+      "model": "qwen2.5:3b",
+      "method": "C",
+      "category": "synonym or code missed",
+      "count": 6
+    },
+    {
+      "model": "qwen2.5:3b",
+      "method": "C",
+      "category": "values left unlabelled",
+      "count": 34
+    },
+    {
+      "model": "qwen2.5:3b",
+      "method": "C",
+      "category": "wrong row",
+      "count": 3
+    },
+    {
+      "model": "qwen2.5:3b",
+      "method": "D",
+      "category": "abstained",
+      "count": 20
+    },
+    {
+      "model": "qwen2.5:3b",
+      "method": "D",
+      "category": "invalid output",
+      "count": 7
+    },
+    {
+      "model": "qwen2.5:3b",
+      "method": "D",
+      "category": "other",
+      "count": 1
+    },
+    {
+      "model": "qwen2.5:3b",
+      "method": "D",
+      "category": "other disease as disease",
+      "count": 1
+    },
+    {
+      "model": "qwen2.5:3b",
+      "method": "D",
+      "category": "synonym or code missed",
+      "count": 4
+    },
+    {
+      "model": "qwen2.5:3b",
+      "method": "D",
+      "category": "values left unlabelled",
+      "count": 14
+    },
+    {
+      "model": "qwen2.5:3b",
+      "method": "D",
+      "category": "wrong row",
+      "count": 2
+    },
+    {
+      "model": "qwen2.5:3b",
+      "method": "E",
+      "category": "invalid output",
+      "count": 8
+    },
+    {
+      "model": "qwen2.5:3b",
+      "method": "E",
+      "category": "other disease as disease",
+      "count": 3
+    },
+    {
+      "model": "qwen2.5:3b",
+      "method": "E",
+      "category": "synonym or code missed",
+      "count": 5
+    },
+    {
+      "model": "qwen2.5:3b",
+      "method": "E",
+      "category": "values left unlabelled",
+      "count": 23
+    },
+    {
+      "model": "qwen2.5:3b",
+      "method": "E",
+      "category": "wrong row",
+      "count": 18
+    }
+  ]
+}
