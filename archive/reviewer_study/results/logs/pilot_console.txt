@@ -1,0 +1,13 @@
+run=pilot model=qwen2.5-coder:3b tasks=5 conditions=['A', 'B', 'C', 'D'] repeats=1 | done=0 todo=20
+[1/20] t01_exo_hz_count A r0: success=True calls=1 13s | elapsed 0.2 min, eta 4 min
+[2/20] t01_exo_hz_count B r0: success=False calls=2 38s | elapsed 0.9 min, eta 8 min
+[3/20] t01_exo_hz_count C r0: success=True calls=3 47s | elapsed 1.6 min, eta 9 min
+[4/20] t01_exo_hz_count D r0: success=True calls=3 37s | elapsed 2.3 min, eta 9 min
+[5/20] t06_path_logreg A r0: success=True calls=1 19s | elapsed 2.6 min, eta 8 min
+[6/20] t06_path_logreg B r0: success=True calls=2 40s | elapsed 3.2 min, eta 8 min
+[7/20] t06_path_logreg C r0: success=False calls=3 52s | elapsed 4.1 min, eta 8 min
+[8/20] t06_path_logreg D r0: success=False calls=3 40s | elapsed 4.8 min, eta 7 min
+[9/20] t09_diabetes_linreg A r0: success=False calls=4 102s | elapsed 6.5 min, eta 8 min
+[10/20] t09_diabetes_linreg B r0: success=False calls=3 67s | elapsed 7.6 min, eta 8 min
+[11/20] t09_diabetes_linreg C r0: success=True calls=3 52s | elapsed 8.5 min, eta 7 min
+[12/20] t09_diabetes_linreg D r0: success=True calls=3 41s | elapsed 9.1 min, eta 6 min

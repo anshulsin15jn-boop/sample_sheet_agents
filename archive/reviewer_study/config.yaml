@@ -1,0 +1,32 @@
+# Experiment configuration. Change the backend or model here; no code changes needed.
+
+backend: ollama            # "ollama" (local, free) or "openrouter" (free ":free" models only)
+model: qwen2.5-coder:3b    # chosen because free RAM was under 6 GB at setup (see README)
+
+ollama:
+  url: http://127.0.0.1:11434
+  num_ctx: 8192            # context window in tokens, kept moderate to save memory
+  keep_alive: 10m          # keep one model loaded between calls
+
+openrouter:
+  url: https://openrouter.ai/api/v1/chat/completions
+  model: qwen/qwen-2.5-coder-32b-instruct:free   # only ":free" models are allowed
+  api_key_env: OPENROUTER_API_KEY
+  min_seconds_between_calls: 3.5                 # stay under about 20 requests per minute
+
+generation:
+  temperature: 0.3         # some randomness so repeats differ, but reproducible through seeds
+  max_tokens: 1200         # cap on generated tokens per call
+  base_seed: 20261111      # seed for call k of repeat r is base_seed + 1000*r + k
+  request_timeout_s: 600
+
+sandbox:
+  timeout_s: 120           # generated code is killed after this many seconds
+  max_memory_mb: 2048      # generated code is killed if it uses more memory than this
+  max_output_chars: 4000   # how much stdout or stderr is shown back to the agents
+
+experiment:
+  max_llm_calls_per_task: 6     # same budget for every condition, so the comparison is fair
+  repeats: 3
+  conditions: [A, B, C, D]
+  min_free_ram_gb: 1.5          # the runner pauses and warns if free memory drops below this

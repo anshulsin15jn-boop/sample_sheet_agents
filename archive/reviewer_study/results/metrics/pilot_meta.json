@@ -1,0 +1,56 @@
+{
+  "started": "2026-11-11 02:48:50",
+  "model": "qwen2.5-coder:3b",
+  "backend": "ollama",
+  "config": {
+    "backend": "ollama",
+    "model": "qwen2.5-coder:3b",
+    "ollama": {
+      "url": "http://127.0.0.1:11434",
+      "num_ctx": 8192,
+      "keep_alive": "10m"
+    },
+    "openrouter": {
+      "url": "https://openrouter.ai/api/v1/chat/completions",
+      "model": "qwen/qwen-2.5-coder-32b-instruct:free",
+      "api_key_env": "OPENROUTER_API_KEY",
+      "min_seconds_between_calls": 3.5
+    },
+    "generation": {
+      "temperature": 0.3,
+      "max_tokens": 1200,
+      "base_seed": 20261111,
+      "request_timeout_s": 600
+    },
+    "sandbox": {
+      "timeout_s": 120,
+      "max_memory_mb": 2048,
+      "max_output_chars": 4000
+    },
+    "experiment": {
+      "max_llm_calls_per_task": 6,
+      "repeats": 3,
+      "conditions": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "min_free_ram_gb": 1.5
+    }
+  },
+  "tasks": [
+    "t01_exo_hz_count",
+    "t06_path_logreg",
+    "t09_diabetes_linreg",
+    "t16_trap_leakage",
+    "t19_trap_injection_csv"
+  ],
+  "conditions": [
+    "A",
+    "B",
+    "C",
+    "D"
+  ],
+  "repeats": 1
+}

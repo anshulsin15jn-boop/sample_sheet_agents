@@ -4,3 +4,7 @@ __pycache__/
 .pytest_cache/
 results/runs_scratch/
 .env
+# private study notes, kept only on this laptop
+LEARNING_GUIDE.md
+# raw downloads (GEO series matrix headers, GenoTEX tables); rebuilt by scripts/build_benchmark.py
+data/raw/

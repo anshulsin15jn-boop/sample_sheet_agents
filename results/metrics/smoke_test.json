@@ -1,33 +1,64 @@
 {
-  "date": "2026-11-11 02:34",
+  "date": "2026-11-11 20:04",
   "machine": {
-    "os": "Windows-11-10.0.26200-SP0",
+    "os": "Windows-11-10.0.26300-SP0",
     "cpu": "Intel64 Family 6 Model 170 Stepping 4, GenuineIntel",
-    "total_ram_gb": 15.5,
-    "free_ram_gb_at_test": 3.7
+    "total_ram_gb": 15.5
   },
-  "backend": "ollama",
-  "model": "qwen2.5-coder:3b",
-  "runs": [
-    {
-      "seconds": 9.6,
-      "prompt_tokens": 54,
-      "completion_tokens": 72,
-      "tokens_per_second_overall": 7.5
+  "models": {
+    "qwen2.5:3b": {
+      "free_ram_gb_before": 3.7,
+      "free_ram_gb_while_loaded": 1.7,
+      "runs": [
+        {
+          "seconds": 5.19,
+          "prompt_tokens": 82,
+          "completion_tokens": 34,
+          "valid_json": false
+        },
+        {
+          "seconds": 1.96,
+          "prompt_tokens": 82,
+          "completion_tokens": 34,
+          "valid_json": false
+        },
+        {
+          "seconds": 1.92,
+          "prompt_tokens": 82,
+          "completion_tokens": 34,
+          "valid_json": false
+        }
+      ],
+      "warm_mean_seconds_per_call": 1.94,
+      "warm_tokens_per_second": 17.53,
+      "sample_answer": "[\"disease state: asthma\", \"disease state: healthy control\"].forEach(row => {\"value\": row, \"label\": row.split(\": \")[1]})"
     },
-    {
-      "seconds": 6.53,
-      "prompt_tokens": 54,
-      "completion_tokens": 117,
-      "tokens_per_second_overall": 17.91
-    },
-    {
-      "seconds": 1.78,
-      "prompt_tokens": 54,
-      "completion_tokens": 32,
-      "tokens_per_second_overall": 18.03
+    "qwen2.5-coder:3b": {
+      "free_ram_gb_before": 3.9,
+      "free_ram_gb_while_loaded": 1.9,
+      "runs": [
+        {
+          "seconds": 5.95,
+          "prompt_tokens": 82,
+          "completion_tokens": 32,
+          "valid_json": true
+        },
+        {
+          "seconds": 1.76,
+          "prompt_tokens": 82,
+          "completion_tokens": 32,
+          "valid_json": true
+        },
+        {
+          "seconds": 1.77,
+          "prompt_tokens": 82,
+          "completion_tokens": 32,
+          "valid_json": true
+        }
+      ],
+      "warm_mean_seconds_per_call": 1.77,
+      "warm_tokens_per_second": 18.13,
+      "sample_answer": "[\n  {\"value\": \"asthma\", \"label\": \"disease\"},\n  {\"value\": \"healthy control\", \"label\": \"control\"}\n]"
     }
-  ],
-  "warm_mean_tokens_per_second": 17.93,
-  "sample_answer": "```python\ndef mean(xs):\n    \"\"\"\n    Calculate the average of a list of numbers.\n    \"\"\"\n    return sum(xs) / len(xs)\n```"
+  }
 }
