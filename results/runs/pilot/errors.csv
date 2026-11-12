@@ -1,0 +1,22 @@
+model,method,repeat,cohort_id,trait,accuracy,category,chosen_row,expert_row,judgment_call,invalid_reason
+none,R,0,GSE120490,Endometrioid Cancer,0.31,wrong row,source,char_0,all samples are endometrioid cancer; experts used metastasis yes/no as the label,
+none,R,0,GSE123088,Eczema,0.294,values left unlabelled,char_1,char_1,,
+none,R,0,GSE131282,Multiple sclerosis,0.12,synonym or code missed,title,char_0,,
+none,R,0,GSE135589,Huntingtons Disease,0.247,synonym or code missed,title,char_4,,
+qwen2.5:3b,E,0,GSE120490,Endometrioid Cancer,0.683,wrong row,char_1,char_0,all samples are endometrioid cancer; experts used metastasis yes/no as the label,
+qwen2.5:3b,A,0,GSE123088,Eczema,0.0,invalid output,,char_1,,not valid JSON
+qwen2.5:3b,B,0,GSE123088,Eczema,0.0,invalid output,,char_1,,not valid JSON
+qwen2.5:3b,C,0,GSE123088,Eczema,0.814,values left unlabelled,char_1,char_1,,
+qwen2.5:3b,D,0,GSE123088,Eczema,0.034,abstained,char_1,char_1,,
+qwen2.5:3b,E,0,GSE123088,Eczema,0.0,invalid output,char_1,char_1,,no mapping key matches a value of the chosen row
+qwen2.5:3b,A,0,GSE131282,Multiple sclerosis,0.201,values left unlabelled,char_6,char_0,,
+qwen2.5:3b,B,0,GSE131282,Multiple sclerosis,0.424,wrong row,char_4,char_0,,
+qwen2.5:3b,C,0,GSE131282,Multiple sclerosis,0.424,wrong row,char_4,char_0,,
+qwen2.5:3b,D,0,GSE131282,Multiple sclerosis,0.424,abstained,char_4,char_0,,
+qwen2.5:3b,E,0,GSE131282,Multiple sclerosis,0.0,values left unlabelled,char_5,char_0,,
+qwen2.5:3b,A,0,GSE135589,Huntingtons Disease,0.388,values left unlabelled,char_4,char_4,,
+qwen2.5:3b,C,0,GSE135589,Huntingtons Disease,0.185,values left unlabelled,char_4,char_4,,
+qwen2.5:3b,E,0,GSE135589,Huntingtons Disease,0.612,synonym or code missed,char_4,char_4,,
+qwen2.5:3b,A,0,GSE212866,COVID-19,0.628,values left unlabelled,char_0,char_0,,
+qwen2.5:3b,C,0,GSE212866,COVID-19,0.752,values left unlabelled,char_0,char_0,,
+qwen2.5:3b,E,0,GSE212866,COVID-19,0.365,values left unlabelled,char_1,char_0,,

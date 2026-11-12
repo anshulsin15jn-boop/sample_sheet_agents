@@ -3,6 +3,7 @@
 backend: ollama            # local and free
 model: qwen2.5:3b          # default model; the runner can override it with --model
 models: [qwen2.5:3b, qwen2.5-coder:3b]   # both are compared in the main run
+main_methods: [R, A, C, D, E]           # method B dropped from the main run for time (see README)
 
 ollama:
   url: http://127.0.0.1:11434
@@ -18,10 +19,11 @@ openrouter:                # kept from the archived study, not used here (no pai
 generation:
   temperature: 0.3         # at 0, repeats with different seeds were identical (results/logs/temperature_check.jsonl),
                            # so a small temperature lets repeats show run to run variation; each fixed seed is reproducible
-  max_tokens: 1500         # cap on generated tokens per call
+  max_tokens: 1000         # cap on generated tokens per call. The pilot used 1500; its longest valid answer
+                           # was 575 tokens, and answers that hit the cap were runaway, invalid JSON
   base_seed: 20261111      # seed for repeat r is base_seed + r
   request_timeout_s: 600
 
 experiment:
-  repeats: 3
+  repeats: 2               # scaled down from 3 to fit the compute budget (see README)
   min_free_ram_gb: 1.5     # the runner pauses and warns if free memory drops below this
