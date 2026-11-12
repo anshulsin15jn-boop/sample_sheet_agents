@@ -4,7 +4,7 @@ This folder holds an earlier exploration from November 2026: a small study of wh
 agent makes a planner and coder agent team more correct on 20 data analysis tasks, inspired by the
 code reviewer ablation in GenoMAS (arXiv 2507.21035).
 
-It was paused after Phases 0 to 2 and a short pilot, and the repo was pivoted to a more focused
+It was paused after setup, a 20 task benchmark, the agent pipelines, and a short pilot, and the repo was pivoted to a more focused
 question: why LLM agents fail at clinical trait extraction from GEO sample metadata (see the main
 README). Some ideas from here were reused, mainly the logged LLM client (`src/llm.py`), the
 resumable runner pattern, and the idea of a checker agent.

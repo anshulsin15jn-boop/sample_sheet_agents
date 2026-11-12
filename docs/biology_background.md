@@ -1,10 +1,10 @@
-# The biology you need for this project
+# Biology background
 
-This page assumes no biology classes. It covers just enough to understand what the agents are reading.
+A short background on the data the agents read, for readers without a biology background.
 
 ## Genes and gene expression
 
-Every cell in your body carries the same DNA, which contains about 20,000 genes. A gene is a recipe
+Every cell in the human body carries the same DNA, which contains about 20,000 genes. A gene is a recipe
 for making a protein. Cells do not use every recipe all the time: a liver cell uses liver recipes, an
 immune cell uses immune recipes. How much a cell is using a gene right now is called that gene's
 **expression level**.
@@ -14,7 +14,7 @@ a blood draw from one patient or a piece of tissue from a surgery) and each row 
 says how strongly that gene was being used in that sample.
 
 Scientists compare groups: if a gene is used much more in asthma patients than in healthy people, it
-might be involved in asthma. That comparison only works if you know **which samples are which**.
+might be involved in asthma. That comparison only works if **which samples are which** is known correctly.
 
 ## GEO: the public library of these datasets
 
@@ -36,7 +36,7 @@ For each sample, the header has a few lines of description written by the resear
   `age: 38`, `gender: Female`
 
 There is no required vocabulary. One study writes `disease state: control`, another `group: Healthy`,
-another `condition: ANL`, another just `genotype: T21`. This free text is what we call the "sample
+another `condition: ANL`, another just `genotype: T21`. This free text is what I call the "sample
 sheet", and turning it into clean labels is the step this project studies.
 
 ## Case and control
@@ -46,7 +46,7 @@ Most studies compare two kinds of samples:
 * **Cases**: samples with the condition being studied (the "disease" label here).
 * **Controls**: samples to compare against (the "control" label here).
 
-A control is not always a healthy person. Common kinds you will see in the benchmark:
+A control is not always a healthy person. Common kinds in the benchmark:
 
 * **Healthy controls**: people without the disease.
 * **Adjacent normal tissue**: healthy looking tissue cut from right next to a tumour, from the same
@@ -80,7 +80,7 @@ A control is not always a healthy person. Common kinds you will see in the bench
   rather than called controls. Unlabelled samples are not graded here.
 * **Label judgment calls**: the answer key is human work and a few choices are debatable. In GSE120490
   (all samples are endometrioid cancer patients), the experts used `matastasis: Yes` as the case
-  label. We keep the expert labels as they are and point such cases out in the error analysis.
+  label. I keep the expert labels as they are and point such cases out in the error analysis.
 
 ## Where GenoTEX and GenoMAS come in
 

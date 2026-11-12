@@ -8,7 +8,7 @@ What it downloads (cached in data/raw/, which is not committed):
       output/preprocess/<Trait>/clinical_data/<GSE>.csv  expert trait label (0 or 1) per sample
       output/preprocess/<Trait>/code/<GSE>.py         expert code, read as TEXT only (never run)
                                                      to find which metadata row they used
-    and the folder listing of input/GEO/<Trait>/<GSE>/ to learn which matrix file they used.
+    and the folder listing of input/GEO/<Trait>/<GSE>/ to find which matrix file they used.
   * From NCBI GEO: the header of that series matrix file, streamed and cut off before the
     expression table, so each download is small.
 

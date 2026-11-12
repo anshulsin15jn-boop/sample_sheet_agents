@@ -10,7 +10,7 @@ Three layers of protection:
    something slipped past the static check (for example a name built from strings).
 
 This is a guard against accidents and simple misuse by a small model. It is not a security
-boundary against a determined attacker; for that you would use a container or a virtual machine.
+boundary against a determined attacker; that would need a container or a virtual machine.
 """
 from __future__ import annotations
 

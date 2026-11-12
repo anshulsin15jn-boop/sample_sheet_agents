@@ -1,4 +1,4 @@
-"""Phase 0 smoke test: check each model answers, returns JSON, and measure its speed.
+"""Smoke test: check each model answers, returns JSON, and measure its speed.
 
 Run from the project root:  python -m scripts.smoke_test
 Writes results/metrics/smoke_test.json and logs every call to results/logs/smoke_test.jsonl.

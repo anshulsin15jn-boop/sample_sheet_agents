@@ -8,7 +8,7 @@ GSE212866), model qwen2.5:3b, 1 repeat, max 1500 tokens. Measured from `attempts
   answer was 575 tokens, so a 1000 token cap changes no valid answer and saves about 8% of time.
 
 Full plan (40 test cohorts, 2 models, 3 repeats, A to E): 40 x 2 x 3 x 187 s = about 12.5 hours.
-Scaled down in the order the plan sets:
+Scaled down in a fixed order (fewer repeats first, then fewer methods):
 1. 2 repeats: about 8.3 hours, still over 6.
 2. Drop method B: (35 + 33 + 29 + 46) s x 0.92 = about 132 s per cohort, so
    40 x 2 x 2 x 132 s = about 5.9 hours. This is what the main run uses, with all 40 test cohorts.

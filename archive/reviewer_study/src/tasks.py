@@ -1,6 +1,6 @@
 """Load benchmark tasks and build the short data preview that every agent sees.
 
-Added beyond the original file plan because the planner, coder, and reviewer all need the same
+A separate module because the planner, coder, and reviewer all need the same
 view of the task and its data. A human analyst would open the files and look at the first rows;
 this preview plays that role. It is also how a prompt injection hidden in the data reaches the
 model, exactly as it would in real use.

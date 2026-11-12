@@ -1,4 +1,4 @@
-"""Copy small, fixed subsets of data from Anshul's earlier projects into benchmark/sources/.
+"""Copy small, fixed subsets of data from my earlier projects into benchmark/sources/.
 
 Only reads from the other project folders; never writes to them. The outputs are committed,
 so this script only needs to run once.
