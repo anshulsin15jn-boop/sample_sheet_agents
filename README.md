@@ -32,7 +32,7 @@ free local models (`qwen2.5:3b` and `qwen2.5-coder:3b` through Ollama).
 ## Status
 
 - [x] Phase 0: pivot and setup
-- [ ] Phase 1: benchmark (GEO sample metadata as input, GenoTEX expert labels as the answer key)
+- [x] Phase 1: benchmark of 50 GEO cohorts across 15 traits (see `benchmark/DATA_CARD.md`)
 - [ ] Phase 2: methods (rule baseline plus five LLM methods)
 - [ ] Phase 3: experiments and error analysis
 - [ ] Phase 4: writeup
