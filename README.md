@@ -33,7 +33,7 @@ free local models (`qwen2.5:3b` and `qwen2.5-coder:3b` through Ollama).
 
 - [x] Phase 0: pivot and setup
 - [x] Phase 1: benchmark of 50 GEO cohorts across 15 traits (see `benchmark/DATA_CARD.md`)
-- [ ] Phase 2: methods (rule baseline plus five LLM methods)
+- [x] Phase 2: methods: rule baseline R and LLM methods A to E (`src/methods.py`, `src/prompts.py`)
 - [ ] Phase 3: experiments and error analysis
 - [ ] Phase 4: writeup
 

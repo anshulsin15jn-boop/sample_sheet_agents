@@ -16,7 +16,8 @@ openrouter:                # kept from the archived study, not used here (no pai
   min_seconds_between_calls: 3.5
 
 generation:
-  temperature: 0           # as deterministic as possible; repeats differ only through the seed
+  temperature: 0.3         # at 0, repeats with different seeds were identical (results/logs/temperature_check.jsonl),
+                           # so a small temperature lets repeats show run to run variation; each fixed seed is reproducible
   max_tokens: 1500         # cap on generated tokens per call
   base_seed: 20261111      # seed for repeat r is base_seed + r
   request_timeout_s: 600

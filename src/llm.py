@@ -1,4 +1,5 @@
-"""One small interface for chat models: a local Ollama server or OpenRouter free models.
+"""One small interface for chat models: a local Ollama server (OpenRouter free models also supported
+but unused in this project).
 
 Every call is timed, counted in tokens, and (when a log path is given) written to a JSONL file,
 so every number in the study can be traced back to the exact messages that produced it.
@@ -72,7 +73,7 @@ class LLMClient:
             raise ValueError(f"Unknown backend {self.backend!r}")
 
     # ------------------------------------------------------------------ backends
-    def _ollama(self, messages: list, seed: int | None) -> LLMResponse:
+    def _ollama(self, messages: list, seed: int | None, json_mode: bool = False) -> LLMResponse:
         o = self.config["ollama"]
         options = {
             "temperature": self.temperature,
@@ -82,12 +83,11 @@ class LLMClient:
         if seed is not None:
             options["seed"] = seed
         t0 = time.perf_counter()
-        r = requests.post(
-            f"{o['url']}/api/chat",
-            json={"model": self.model, "messages": messages, "stream": False,
-                  "options": options, "keep_alive": o.get("keep_alive", "10m")},
-            timeout=self.timeout,
-        )
+        body = {"model": self.model, "messages": messages, "stream": False,
+                "options": options, "keep_alive": o.get("keep_alive", "10m")}
+        if json_mode:   # Ollama then only lets the model produce syntactically valid JSON
+            body["format"] = "json"
+        r = requests.post(f"{o['url']}/api/chat", json=body, timeout=self.timeout)
         r.raise_for_status()
         data = r.json()
         return LLMResponse(
@@ -99,7 +99,7 @@ class LLMClient:
             backend="ollama",
         )
 
-    def _openrouter(self, messages: list, seed: int | None) -> LLMResponse:
+    def _openrouter(self, messages: list, seed: int | None, json_mode: bool = False) -> LLMResponse:
         o = self.config["openrouter"]
         key = os.environ.get(o["api_key_env"])
         if not key:
@@ -129,12 +129,12 @@ class LLMClient:
 
     # ------------------------------------------------------------------ public
     def chat(self, messages: list, role: str = "", seed: int | None = None,
-             meta: dict | None = None, retries: int = 2) -> LLMResponse:
+             meta: dict | None = None, retries: int = 2, json_mode: bool = False) -> LLMResponse:
         fn: Callable = self._ollama if self.backend == "ollama" else self._openrouter
         last_err = None
         for attempt in range(retries + 1):
             try:
-                resp = fn(messages, seed)
+                resp = fn(messages, seed, json_mode)
                 break
             except (requests.RequestException, KeyError, ValueError) as e:  # network or server hiccup
                 last_err = e
@@ -166,7 +166,7 @@ class ScriptedLLM:
         self.backend = "scripted"
 
     def chat(self, messages: list, role: str = "", seed: int | None = None,
-             meta: dict | None = None, retries: int = 0) -> LLMResponse:
+             meta: dict | None = None, retries: int = 0, json_mode: bool = False) -> LLMResponse:
         self.calls.append({"role": role, "messages": messages, "seed": seed})
         text = self.responses.pop(0) if self.responses else ""
         return LLMResponse(text=text, prompt_tokens=10, completion_tokens=10, seconds=0.0,
