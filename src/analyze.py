@@ -192,6 +192,62 @@ def error_table(atts: list[dict], split: str = "test") -> list[dict]:
     return out
 
 
+def error_examples(atts: list[dict], split: str = "test", per_cat: int = 2) -> str:
+    """Real failures with the actual metadata values, the model's labels, and the expert labels."""
+    errs = error_table(atts, split)
+    by_key = {(a["model"], a["method"], a["repeat"], a["cohort_id"]): a for a in atts}
+    L = ["# Error examples\n",
+         "Real failed cohorts from this run, grouped by error type. For each: the trait, the row the "
+         "method chose, and the values of that row with the method's label and the expert label "
+         "(majority of the expert labels of its samples).\n"]
+    seen_cohorts = set()
+    for cat in ["wrong row", "other disease as disease", "negation missed", "synonym or code missed",
+                "values left unlabelled", "flipped labels", "invalid output", "abstained", "other"]:
+        xs = [e for e in errs if e["category"] == cat and e["model"] != "none"]
+        if not xs:
+            continue
+        L.append(f"## {cat} ({len(xs)} failed cohort attempts)\n")
+        shown = 0
+        for e in xs:
+            if shown >= per_cat or e["cohort_id"] in seen_cohorts:
+                continue
+            a = by_key[(e["model"], e["method"], e["repeat"], e["cohort_id"])]
+            c = load_cohort(e["cohort_id"])
+            res = a["result"]
+            L.append(f"**{e['cohort_id']}**, trait *{c['trait']}*, method {e['method']}, {e['model']}, "
+                     f"accuracy {100 * e['accuracy']:.0f}%. Study title: {c['series_title']}")
+            if e["judgment_call"]:
+                L.append(f"(Expert judgment call: {e['judgment_call']}.)")
+            if cat == "invalid output":
+                start = (res["raw"][0] if res["raw"] else "")[:200].replace("\n", " ")
+                L.append(f"\nReason: {res['invalid_reason']}. Start of the output: `{start}`\n")
+            elif cat == "abstained":
+                L.append("\nThe method answered cannot determine or unsure for most samples.\n")
+            else:
+                gold_row = c["expert_trait_row"]
+                L.append(f"\nChosen row `{res['row']}`; expert row `{gold_row}`.\n")
+                gold = gold_answer(c)["mapping"]
+                rows = {r["row_id"]: r for r in c["rows"]}
+                if res["row"] != gold_row and res["row"] in rows:
+                    vals = row_view(rows[res["row"]])["values"][:8]
+                    L.append("Values of the chosen row and the method's labels: "
+                             + "; ".join(f"`{v}` -> {res['mapping'].get(v, 'missing')}" for v in vals) + "\n")
+                    L.append("Expert row values: "
+                             + "; ".join(f"`{v}` -> {g}" for v, g in list(gold.items())[:8]) + "\n")
+                else:
+                    L.append("| Value | Method | Expert |\n|---|---|---|")
+                    for v, g in list(gold.items())[:10]:
+                        m = res["mapping"].get(v, "missing")
+                        why = res.get("reasons", {}).get(v, "")
+                        why = f" ({why})" if why else ""
+                        mark = "" if m == g else " **x**"
+                        L.append(f"| `{v}` | {m}{why} | {g}{mark} |")
+                    L.append("")
+            seen_cohorts.add(e["cohort_id"])
+            shown += 1
+    return "\n".join(L) + "\n"
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--run", required=True)
@@ -211,6 +267,7 @@ def main():
             w = csv.DictWriter(f, fieldnames=list(errs[0]))
             w.writeheader()
             w.writerows(errs)
+    (d / "error_examples.md").write_text(error_examples(atts, a.split), encoding="utf-8")
     print(metrics_markdown(summ))
     tot = Counter(e["category"] for e in errs)
     print("error categories (all models, methods, repeats):", dict(tot.most_common()))
