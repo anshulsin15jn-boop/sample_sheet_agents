@@ -106,6 +106,25 @@ spread. A cohort counts as solved at 95% accuracy or more. Full table:
 
 ## Error analysis
 
+### Planned comparison for method F (written before any F results)
+
+Method F is a tool calling agent. Instead of reading all metadata at once, it calls tools to list
+the rows, read one row's values with sample counts, check a draft mapping (values left unlabelled,
+labels for values that do not exist, a row with only one distinct value), and submit the answer.
+These tools target the two largest error types above. I fixed the comparison before running F:
+
+* **Primary:** F against A (zero shot) for each model on the same 40 test cohorts and seeds: mean
+  per sample accuracy, macro F1, row choice, solved cohorts, and invalid rate. A difference smaller
+  than the repeat spread counts as no difference.
+* **Mechanism:** the share of attempts whose main error is "values left unlabelled" and the share
+  whose main error is "wrong row", for F against A, using the same categorizer.
+* **Agent behaviour:** tool calls per cohort, how often `check_mapping` flagged a problem, and how
+  often the submitted answer then passed the same check.
+* **Expectation:** F should reduce unlabelled values and wrong rows. It may still lose overall if
+  the small models handle tool calls poorly; I will report it either way.
+
+## Error analysis
+
 I sorted every failed cohort attempt (accuracy below 95%) into one main error type, in a fixed
 priority order (`src/analyze.py`). Counts cover all models, methods, and repeats, including the
 rule:
