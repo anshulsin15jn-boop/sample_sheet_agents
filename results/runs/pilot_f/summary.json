@@ -1,0 +1,137 @@
+{
+  "split": "dev",
+  "rows": [
+    {
+      "model": "qwen2.5-coder:3b",
+      "method": "F",
+      "repeats": 1,
+      "accuracy": 0.7659343659300555,
+      "accuracy_sd": 0.0,
+      "macro_f1": 0.7388204575043862,
+      "macro_f1_sd": 0.0,
+      "row_acc": 0.8,
+      "row_acc_sd": 0.0,
+      "solved": 2,
+      "solved_sd": 0.0,
+      "invalid_rate": 0,
+      "invalid_rate_sd": 0.0,
+      "coverage": 0.84628389704685,
+      "coverage_sd": 0.0,
+      "selective_accuracy": 0.9188328912466843,
+      "selective_accuracy_sd": 0.0,
+      "pooled_accuracy": 0.75,
+      "pooled_accuracy_sd": 0.0,
+      "seconds": 26.06248345999338,
+      "seconds_sd": 0.0,
+      "calls": 4,
+      "calls_sd": 0.0,
+      "n_cohorts": 5,
+      "n_cohorts_sd": 0.0
+    },
+    {
+      "model": "qwen2.5:3b",
+      "method": "F",
+      "repeats": 1,
+      "accuracy": 0.8170316301703163,
+      "accuracy_sd": 0.0,
+      "macro_f1": 0.8262986484285947,
+      "macro_f1_sd": 0.0,
+      "row_acc": 1,
+      "row_acc_sd": 0.0,
+      "solved": 3,
+      "solved_sd": 0.0,
+      "invalid_rate": 0,
+      "invalid_rate_sd": 0.0,
+      "coverage": 0.8209531987977673,
+      "coverage_sd": 0.0,
+      "selective_accuracy": 0.9888888888888889,
+      "selective_accuracy_sd": 0.0,
+      "pooled_accuracy": 0.7995283018867925,
+      "pooled_accuracy_sd": 0.0,
+      "seconds": 67.42921668000636,
+      "seconds_sd": 0.0,
+      "calls": 5.4,
+      "calls_sd": 0.0,
+      "n_cohorts": 5,
+      "n_cohorts_sd": 0.0
+    }
+  ],
+  "error_counts": [
+    {
+      "model": "qwen2.5-coder:3b",
+      "method": "F",
+      "category": "synonym or code missed",
+      "count": 2
+    },
+    {
+      "model": "qwen2.5-coder:3b",
+      "method": "F",
+      "category": "wrong row",
+      "count": 1
+    },
+    {
+      "model": "qwen2.5:3b",
+      "method": "F",
+      "category": "synonym or code missed",
+      "count": 1
+    },
+    {
+      "model": "qwen2.5:3b",
+      "method": "F",
+      "category": "values left unlabelled",
+      "count": 1
+    }
+  ],
+  "mechanism": {
+    "rates": [
+      {
+        "model": "qwen2.5-coder:3b",
+        "method": "F",
+        "n": 5,
+        "values left unlabelled": 0.0,
+        "wrong row": 0.2,
+        "invalid output": 0.0
+      },
+      {
+        "model": "qwen2.5:3b",
+        "method": "F",
+        "n": 5,
+        "values left unlabelled": 0.2,
+        "wrong row": 0.0,
+        "invalid output": 0.0
+      }
+    ],
+    "agent": [
+      {
+        "model": "qwen2.5-coder:3b",
+        "n": 5,
+        "tool_calls_per_cohort": 4.0,
+        "steps_per_cohort": 4.0,
+        "recovered_share": 1.0,
+        "submitted": 5,
+        "check_used": 5,
+        "flagged": 0,
+        "fixed_after_flag": 0,
+        "final_check_ok": 5,
+        "errors": {
+          "recovered from text": 20
+        }
+      },
+      {
+        "model": "qwen2.5:3b",
+        "n": 5,
+        "tool_calls_per_cohort": 4.8,
+        "steps_per_cohort": 5.4,
+        "recovered_share": 0.0,
+        "submitted": 5,
+        "check_used": 5,
+        "flagged": 2,
+        "fixed_after_flag": 1,
+        "final_check_ok": 4,
+        "errors": {
+          "no tool call": 3
+        }
+      }
+    ]
+  }
+}

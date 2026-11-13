@@ -1,0 +1,6 @@
+model,method,repeat,cohort_id,trait,accuracy,category,chosen_row,expert_row,judgment_call,invalid_reason
+qwen2.5-coder:3b,F,0,GSE123088,Eczema,0.941,synonym or code missed,char_2,char_1,,
+qwen2.5-coder:3b,F,0,GSE131282,Multiple sclerosis,0.641,wrong row,char_4,char_0,,
+qwen2.5-coder:3b,F,0,GSE135589,Huntingtons Disease,0.247,synonym or code missed,char_4,char_4,,
+qwen2.5:3b,F,0,GSE123088,Eczema,0.333,values left unlabelled,char_2,char_1,,
+qwen2.5:3b,F,0,GSE212866,COVID-19,0.752,synonym or code missed,char_0,char_0,,

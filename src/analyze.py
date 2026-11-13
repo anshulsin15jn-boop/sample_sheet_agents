@@ -1,8 +1,10 @@
 """Summarize a run: metrics per model and method, and an error category for every failed cohort.
 
     python -m src.analyze --run main
+    python -m src.analyze --run main,main_f,main_b --out combined     # several runs together
 
-Writes results/runs/<run>/summary.json, metrics.md, errors.csv, and error_examples.md.
+Writes results/runs/<run or out>/summary.json, metrics.md, errors.csv, error_examples.md, and
+mechanism.md (error type rates per method, plus tool use statistics for method F).
 
 How numbers are averaged: for each (model, method, repeat) we average the per cohort metric over
 cohorts (so a cohort with 4000 samples counts the same as one with 30). Then we report the mean and
@@ -47,8 +49,12 @@ NEG_WORDS = ["non", "no", "not", "adjacent", "negative", "neg", "without", "free
 
 
 def load_attempts(run: str) -> list[dict]:
-    p = ROOT / "results" / "runs" / run / "attempts.jsonl"
-    return [json.loads(l) for l in p.read_text(encoding="utf-8").splitlines() if l.strip()]
+    """Attempts of one run, or of several runs given as a comma separated list."""
+    out = []
+    for r in run.split(","):
+        p = ROOT / "results" / "runs" / r.strip() / "attempts.jsonl"
+        out += [json.loads(l) for l in p.read_text(encoding="utf-8").splitlines() if l.strip()]
+    return out
 
 
 def _mean_sd(xs):
@@ -248,13 +254,67 @@ def error_examples(atts: list[dict], split: str = "test", per_cat: int = 2) -> s
     return "\n".join(L) + "\n"
 
 
+def mechanism(atts: list[dict], split: str = "test") -> dict:
+    """Per (model, method): share of ALL attempts whose main error is each type, and F tool stats."""
+    atts = [a for a in atts if a["split"] == split]
+    errs = {(e["model"], e["method"], e["repeat"], e["cohort_id"]): e["category"] for e in error_table(atts, split)}
+    groups = defaultdict(list)
+    for a in atts:
+        groups[(a["model"], a["method"])].append(a)
+    rates, agent = [], []
+    for (model, method), xs in sorted(groups.items()):
+        cats = Counter(errs.get((a["model"], a["method"], a["repeat"], a["cohort_id"]), "solved") for a in xs)
+        rates.append({"model": model, "method": method, "n": len(xs),
+                      **{c: cats[c] / len(xs) for c in ("values left unlabelled", "wrong row", "invalid output")}})
+        if method == "F":
+            ag = [a["result"].get("agent", {}) for a in xs]
+            n_calls = sum(g.get("n_tool_calls", 0) for g in ag)
+            flagged = [g for g in ag if g.get("flagged")]
+            err = sum((Counter(g.get("errors", {})) for g in ag), Counter())
+            agent.append({"model": model, "n": len(xs),
+                          "tool_calls_per_cohort": n_calls / len(xs),
+                          "steps_per_cohort": sum(g.get("n_steps", 0) for g in ag) / len(xs),
+                          "recovered_share": sum(g.get("n_recovered", 0) for g in ag) / max(1, n_calls),
+                          "submitted": sum(g.get("stop") == "submitted" for g in ag),
+                          "check_used": sum(bool(g.get("checks")) for g in ag),
+                          "flagged": len(flagged),
+                          "fixed_after_flag": sum(bool(g.get("fixed_after_flag")) for g in flagged),
+                          "final_check_ok": sum(bool(g.get("final_check_ok")) for g in ag),
+                          "errors": dict(err)})
+    return {"rates": rates, "agent": agent}
+
+
+def mechanism_markdown(m: dict) -> str:
+    L = ["# Error type rates and tool use\n",
+         "Share of all attempts (cohort x repeat) whose main error is each type; attempts with accuracy of "
+         "at least 95% count as solved and have no error type.\n",
+         "| Model | Method | Attempts | Values left unlabelled % | Wrong row % | Invalid output % |",
+         "|---|---|---|---|---|---|"]
+    for r in m["rates"]:
+        L.append(f"| {r['model']} | {r['method']} | {r['n']} | {100 * r['values left unlabelled']:.1f} | "
+                 f"{100 * r['wrong row']:.1f} | {100 * r['invalid output']:.1f} |")
+    if m["agent"]:
+        L += ["\n## Method F tool use\n",
+              "| Model | Attempts | Tool calls per cohort | Steps per cohort | Calls recovered from text % | "
+              "Submitted | Used check_mapping | check_mapping flagged | Fixed after flag | Final answer passes check | "
+              "Loop events |", "|---|---|---|---|---|---|---|---|---|---|---|"]
+        for g in m["agent"]:
+            errs = ", ".join(f"{k} {v}" for k, v in sorted(g["errors"].items())) or "none"
+            L.append(f"| {g['model']} | {g['n']} | {g['tool_calls_per_cohort']:.1f} | {g['steps_per_cohort']:.1f} | "
+                     f"{100 * g['recovered_share']:.0f} | {g['submitted']} | {g['check_used']} | {g['flagged']} | "
+                     f"{g['fixed_after_flag']} | {g['final_check_ok']} | {errs} |")
+    return "\n".join(L) + "\n"
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--run", required=True)
     ap.add_argument("--split", default="test")
+    ap.add_argument("--out", default=None, help="output folder name when several runs are combined")
     a = ap.parse_args()
     atts = load_attempts(a.run)
-    d = ROOT / "results" / "runs" / a.run
+    d = ROOT / "results" / "runs" / (a.out or a.run)
+    d.mkdir(parents=True, exist_ok=True)
     summ = summarize(atts, a.split)
     errs = error_table(atts, a.split)
     cats = Counter((e["model"], e["method"], e["category"]) for e in errs)
@@ -268,6 +328,10 @@ def main():
             w.writeheader()
             w.writerows(errs)
     (d / "error_examples.md").write_text(error_examples(atts, a.split), encoding="utf-8")
+    mech = mechanism(atts, a.split)
+    summ["mechanism"] = mech
+    (d / "summary.json").write_text(json.dumps(summ, indent=2))
+    (d / "mechanism.md").write_text(mechanism_markdown(mech), encoding="utf-8")
     print(metrics_markdown(summ))
     tot = Counter(e["category"] for e in errs)
     print("error categories (all models, methods, repeats):", dict(tot.most_common()))

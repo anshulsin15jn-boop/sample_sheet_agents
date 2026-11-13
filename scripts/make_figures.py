@@ -1,6 +1,7 @@
 """Figures for the README, made from results/runs/<run>/attempts.jsonl.
 
     python -m scripts.make_figures --run main
+    python -m scripts.make_figures --run main,main_f,main_b --out combined
 
 Writes results/figures/accuracy_by_method.png and results/figures/error_categories.png.
 Colors: the two models use categorical slots 1 and 2 of the reference palette (blue, orange); the
@@ -24,7 +25,7 @@ from src.cohort import ROOT  # noqa: E402
 MODEL_COLORS = {"qwen2.5:3b": "#2a78d6", "qwen2.5-coder:3b": "#eb6834"}
 TEXT, MUTED, GRID, SURFACE = "#0b0b0b", "#52514e", "#e4e3df", "#fcfcfb"
 METHOD_NAMES = {"R": "R rules", "A": "A zero shot", "B": "B few shot", "C": "C reasoning",
-                "D": "D abstain", "E": "E checker"}
+                "D": "D abstain", "E": "E checker", "F": "F tools"}
 CATEGORIES = ["invalid output", "abstained", "wrong row", "flipped labels", "other disease as disease",
               "negation missed", "synonym or code missed", "values left unlabelled", "other"]
 
@@ -46,7 +47,7 @@ def accuracy_figure(atts, split, out):
     for a in atts:
         per[(a["model"], a["method"])][a["repeat"]].append(a["accuracy"])
     rule = [statistics.mean(v) for v in per[("none", "R")].values()]
-    methods = [m for m in "ABCDE" if any(k[1] == m for k in per)]
+    methods = [m for m in "ABCDEF" if any(k[1] == m for k in per)]
     models = [m for m in MODEL_COLORS if any(k[0] == m for k in per)]
     fig, ax = plt.subplots(figsize=(7.5, 4), dpi=150)
     fig.patch.set_facecolor(SURFACE)
@@ -118,11 +119,13 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--run", default="main")
     ap.add_argument("--split", default="test")
+    ap.add_argument("--out", default=None)
     a = ap.parse_args()
     atts = load_attempts(a.run)
     d = ROOT / "results" / "figures"
     d.mkdir(parents=True, exist_ok=True)
-    tag = "" if a.run == "main" else f"_{a.run}"
+    name = a.out or a.run
+    tag = "" if name == "main" else f"_{name}"
     accuracy_figure(atts, a.split, d / f"accuracy_by_method{tag}.png")
     error_figure(atts, a.split, d / f"error_categories{tag}.png")
     print("wrote figures to", d)

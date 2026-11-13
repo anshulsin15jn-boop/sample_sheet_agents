@@ -1,0 +1,182 @@
+{
+  "split": "test",
+  "rows": [
+    {
+      "model": "qwen2.5-coder:3b",
+      "method": "F",
+      "repeats": 2,
+      "accuracy": 0.6447321488431778,
+      "accuracy_sd": 0.13547985844560084,
+      "macro_f1": 0.6468230597910213,
+      "macro_f1_sd": 0.14314267688074309,
+      "row_acc": 0.775,
+      "row_acc_sd": 0.1767766952966369,
+      "solved": 19.5,
+      "solved_sd": 3.5355339059327378,
+      "invalid_rate": 0.1875,
+      "invalid_rate_sd": 0.15909902576697318,
+      "coverage": 0.6955311949578658,
+      "coverage_sd": 0.10683427785822178,
+      "selective_accuracy": 0.9244646354808956,
+      "selective_accuracy_sd": 0.05243719237540054,
+      "pooled_accuracy": 0.5667617495245857,
+      "pooled_accuracy_sd": 0.05234626402426898,
+      "seconds": 28.609333027500362,
+      "seconds_sd": 2.517217169114045,
+      "calls": 4.125,
+      "calls_sd": 0.21213203435596445,
+      "n_cohorts": 40,
+      "n_cohorts_sd": 0.0
+    },
+    {
+      "model": "qwen2.5:3b",
+      "method": "F",
+      "repeats": 2,
+      "accuracy": 0.7225331897463577,
+      "accuracy_sd": 0.12628826421464226,
+      "macro_f1": 0.740762464947101,
+      "macro_f1_sd": 0.10775235132597095,
+      "row_acc": 0.8,
+      "row_acc_sd": 0.03535533905932733,
+      "solved": 23,
+      "solved_sd": 4.242640687119285,
+      "invalid_rate": 0.1375,
+      "invalid_rate_sd": 0.08838834764831845,
+      "coverage": 0.7841759089145166,
+      "coverage_sd": 0.1493130122769098,
+      "selective_accuracy": 0.9199156547643641,
+      "selective_accuracy_sd": 0.006215622710161142,
+      "pooled_accuracy": 0.8491578375441455,
+      "pooled_accuracy_sd": 0.05042530020686465,
+      "seconds": 54.63125869000032,
+      "seconds_sd": 8.767977450446372,
+      "calls": 4.9,
+      "calls_sd": 0.247487373415292,
+      "n_cohorts": 40,
+      "n_cohorts_sd": 0.0
+    }
+  ],
+  "error_counts": [
+    {
+      "model": "qwen2.5-coder:3b",
+      "method": "F",
+      "category": "invalid output",
+      "count": 15
+    },
+    {
+      "model": "qwen2.5-coder:3b",
+      "method": "F",
+      "category": "other",
+      "count": 1
+    },
+    {
+      "model": "qwen2.5-coder:3b",
+      "method": "F",
+      "category": "other disease as disease",
+      "count": 3
+    },
+    {
+      "model": "qwen2.5-coder:3b",
+      "method": "F",
+      "category": "synonym or code missed",
+      "count": 8
+    },
+    {
+      "model": "qwen2.5-coder:3b",
+      "method": "F",
+      "category": "values left unlabelled",
+      "count": 11
+    },
+    {
+      "model": "qwen2.5-coder:3b",
+      "method": "F",
+      "category": "wrong row",
+      "count": 3
+    },
+    {
+      "model": "qwen2.5:3b",
+      "method": "F",
+      "category": "invalid output",
+      "count": 11
+    },
+    {
+      "model": "qwen2.5:3b",
+      "method": "F",
+      "category": "other disease as disease",
+      "count": 3
+    },
+    {
+      "model": "qwen2.5:3b",
+      "method": "F",
+      "category": "synonym or code missed",
+      "count": 7
+    },
+    {
+      "model": "qwen2.5:3b",
+      "method": "F",
+      "category": "values left unlabelled",
+      "count": 8
+    },
+    {
+      "model": "qwen2.5:3b",
+      "method": "F",
+      "category": "wrong row",
+      "count": 5
+    }
+  ],
+  "mechanism": {
+    "rates": [
+      {
+        "model": "qwen2.5-coder:3b",
+        "method": "F",
+        "n": 80,
+        "values left unlabelled": 0.1375,
+        "wrong row": 0.0375,
+        "invalid output": 0.1875
+      },
+      {
+        "model": "qwen2.5:3b",
+        "method": "F",
+        "n": 80,
+        "values left unlabelled": 0.1,
+        "wrong row": 0.0625,
+        "invalid output": 0.1375
+      }
+    ],
+    "agent": [
+      {
+        "model": "qwen2.5-coder:3b",
+        "n": 80,
+        "tool_calls_per_cohort": 5.0875,
+        "steps_per_cohort": 5.15,
+        "recovered_share": 1.0,
+        "submitted": 65,
+        "check_used": 79,
+        "flagged": 28,
+        "fixed_after_flag": 13,
+        "final_check_ok": 64,
+        "errors": {
+          "recovered from text": 407,
+          "bad arguments": 40,
+          "no tool call": 5
+        }
+      },
+      {
+        "model": "qwen2.5:3b",
+        "n": 80,
+        "tool_calls_per_cohort": 4.5,
+        "steps_per_cohort": 5.0625,
+        "recovered_share": 0.0,
+        "submitted": 69,
+        "check_used": 74,
+        "flagged": 8,
+        "fixed_after_flag": 1,
+        "final_check_ok": 61,
+        "errors": {
+          "no tool call": 45,
+          "bad arguments": 17
+        }
+      }
+    ]
+  }
+}

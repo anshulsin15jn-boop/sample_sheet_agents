@@ -1,0 +1,83 @@
+{
+  "split": "test",
+  "rows": [
+    {
+      "model": "qwen2.5-coder:3b",
+      "method": "B",
+      "repeats": 2,
+      "accuracy": 0.7554894477457214,
+      "accuracy_sd": 0.01520178701674181,
+      "macro_f1": 0.7722490098355411,
+      "macro_f1_sd": 0.007450452999081863,
+      "row_acc": 0.9125000000000001,
+      "row_acc_sd": 0.017677669529663705,
+      "solved": 21.5,
+      "solved_sd": 0.7071067811865476,
+      "invalid_rate": 0.0125,
+      "invalid_rate_sd": 0.017677669529663688,
+      "coverage": 0.8749144429383091,
+      "coverage_sd": 0.01445933327751736,
+      "selective_accuracy": 0.8703696713965051,
+      "selective_accuracy_sd": 0.002542055625429609,
+      "pooled_accuracy": 0.610907362129856,
+      "pooled_accuracy_sd": 0.009316674514411137,
+      "seconds": 13.680636110000705,
+      "seconds_sd": 1.6527390290890709,
+      "calls": 1,
+      "calls_sd": 0.0,
+      "n_cohorts": 40,
+      "n_cohorts_sd": 0.0
+    }
+  ],
+  "error_counts": [
+    {
+      "model": "qwen2.5-coder:3b",
+      "method": "B",
+      "category": "invalid output",
+      "count": 1
+    },
+    {
+      "model": "qwen2.5-coder:3b",
+      "method": "B",
+      "category": "other",
+      "count": 2
+    },
+    {
+      "model": "qwen2.5-coder:3b",
+      "method": "B",
+      "category": "other disease as disease",
+      "count": 5
+    },
+    {
+      "model": "qwen2.5-coder:3b",
+      "method": "B",
+      "category": "synonym or code missed",
+      "count": 7
+    },
+    {
+      "model": "qwen2.5-coder:3b",
+      "method": "B",
+      "category": "values left unlabelled",
+      "count": 16
+    },
+    {
+      "model": "qwen2.5-coder:3b",
+      "method": "B",
+      "category": "wrong row",
+      "count": 6
+    }
+  ],
+  "mechanism": {
+    "rates": [
+      {
+        "model": "qwen2.5-coder:3b",
+        "method": "B",
+        "n": 80,
+        "values left unlabelled": 0.2,
+        "wrong row": 0.075,
+        "invalid output": 0.0125
+      }
+    ],
+    "agent": []
+  }
+}

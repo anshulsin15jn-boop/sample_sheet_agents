@@ -1,0 +1,76 @@
+model,method,repeat,cohort_id,trait,accuracy,category,chosen_row,expert_row,judgment_call,invalid_reason
+qwen2.5-coder:3b,F,0,GSE100680,Intellectual Disability,0.848,synonym or code missed,char_3,char_3,,
+qwen2.5-coder:3b,F,0,GSE109048,Coronary artery disease,0.667,synonym or code missed,char_1,char_1,,
+qwen2.5-coder:3b,F,0,GSE131027,Mesothelioma,0.0,invalid output,,char_1,,no valid submit_answer within 8 tool calls
+qwen2.5-coder:3b,F,0,GSE131281,Multiple sclerosis,0.604,values left unlabelled,char_5,char_5,,
+qwen2.5-coder:3b,F,0,GSE148810,Lupus (Systemic Lupus Erythematosus),0.7,other disease as disease,char_1,char_1,lesional skin of a different disease (juvenile dermatomyositis) labelled control,
+qwen2.5-coder:3b,F,0,GSE161533,Stroke,0.75,values left unlabelled,char_6,char_6,stroke taken from a disease history row in a cancer tissue study,
+qwen2.5-coder:3b,F,0,GSE178201,Liver Cancer,0.495,values left unlabelled,char_0,char_0,cell lines: HepG2 (liver cancer) vs MCF10A (breast) as control,
+qwen2.5-coder:3b,F,0,GSE182798,Asthma,0.687,values left unlabelled,char_0,char_0,,
+qwen2.5-coder:3b,F,0,GSE185658,Asthma,0.5,values left unlabelled,char_1,char_1,,
+qwen2.5-coder:3b,F,0,GSE227080,COVID-19,0.496,synonym or code missed,char_2,char_2,,
+qwen2.5-coder:3b,F,0,GSE228782,Liver Cancer,0.0,values left unlabelled,char_2,char_2,,
+qwen2.5-coder:3b,F,0,GSE236951,Pancreatic Cancer,0.765,values left unlabelled,char_0,char_0,,
+qwen2.5-coder:3b,F,0,GSE273225,Stroke,0.0,wrong row,char_0,char_7,"intracranial bleeding counted as stroke, head trauma as control",
+qwen2.5-coder:3b,F,0,GSE32924,Eczema,0.0,invalid output,,char_2,non lesional skin (ANL) of eczema patients labelled disease,no valid submit_answer within 8 tool calls
+qwen2.5-coder:3b,F,0,GSE34721,Huntingtons Disease,0.0,synonym or code missed,char_1,char_1,,
+qwen2.5-coder:3b,F,0,GSE57225,Eczema,0.0,invalid output,,char_1,,no valid submit_answer within 8 tool calls
+qwen2.5-coder:3b,F,0,GSE73551,Endometrioid Cancer,0.18,values left unlabelled,char_0,char_0,,
+qwen2.5-coder:3b,F,0,GSE73637,Endometrioid Cancer,0.942,synonym or code missed,char_3,char_3,,
+qwen2.5-coder:3b,F,1,GSE100680,Intellectual Disability,0.0,wrong row,char_0,char_3,,
+qwen2.5-coder:3b,F,1,GSE109048,Coronary artery disease,0.667,synonym or code missed,char_1,char_1,,
+qwen2.5-coder:3b,F,1,GSE117668,Mesothelioma,0.0,invalid output,,char_1,,no valid submit_answer within 8 tool calls
+qwen2.5-coder:3b,F,1,GSE120774,Coronary artery disease,0.5,wrong row,char_0,char_2,,
+qwen2.5-coder:3b,F,1,GSE123086,Asthma,0.0,invalid output,,char_1,,no valid submit_answer within 8 tool calls
+qwen2.5-coder:3b,F,1,GSE131027,Mesothelioma,0.0,invalid output,,char_1,,no valid submit_answer within 8 tool calls
+qwen2.5-coder:3b,F,1,GSE148810,Lupus (Systemic Lupus Erythematosus),0.0,invalid output,,char_1,lesional skin of a different disease (juvenile dermatomyositis) labelled control,no valid submit_answer within 8 tool calls
+qwen2.5-coder:3b,F,1,GSE161533,Stroke,0.75,values left unlabelled,char_6,char_6,stroke taken from a disease history row in a cancer tissue study,
+qwen2.5-coder:3b,F,1,GSE178201,Liver Cancer,0.495,other,char_0,char_0,cell lines: HepG2 (liver cancer) vs MCF10A (breast) as control,
+qwen2.5-coder:3b,F,1,GSE182798,Asthma,0.687,values left unlabelled,char_0,char_0,,
+qwen2.5-coder:3b,F,1,GSE185658,Asthma,0.5,values left unlabelled,char_1,char_1,,
+qwen2.5-coder:3b,F,1,GSE213313,COVID-19,0.0,invalid output,,char_1,,no valid submit_answer within 8 tool calls
+qwen2.5-coder:3b,F,1,GSE227080,COVID-19,0.496,synonym or code missed,char_2,char_2,,
+qwen2.5-coder:3b,F,1,GSE228782,Liver Cancer,0.0,invalid output,,char_2,,no valid submit_answer within 8 tool calls
+qwen2.5-coder:3b,F,1,GSE236951,Pancreatic Cancer,0.706,other disease as disease,char_0,char_0,,
+qwen2.5-coder:3b,F,1,GSE26927,Huntingtons Disease,0.169,other disease as disease,char_0,char_0,,
+qwen2.5-coder:3b,F,1,GSE273225,Stroke,0.0,invalid output,,char_7,"intracranial bleeding counted as stroke, head trauma as control",no valid submit_answer within 8 tool calls
+qwen2.5-coder:3b,F,1,GSE32924,Eczema,0.0,invalid output,,char_2,non lesional skin (ANL) of eczema patients labelled disease,no valid submit_answer within 8 tool calls
+qwen2.5-coder:3b,F,1,GSE34201,Huntingtons Disease,0.0,synonym or code missed,char_0,char_1,,
+qwen2.5-coder:3b,F,1,GSE34721,Huntingtons Disease,0.0,invalid output,,char_1,,no valid submit_answer within 8 tool calls
+qwen2.5-coder:3b,F,1,GSE46416,Bipolar disorder,0.0,invalid output,,char_1,,no valid submit_answer within 8 tool calls
+qwen2.5-coder:3b,F,1,GSE57225,Eczema,0.0,invalid output,,char_1,,no valid submit_answer within 8 tool calls
+qwen2.5-coder:3b,F,1,GSE73637,Endometrioid Cancer,0.0,invalid output,,char_3,,no valid submit_answer within 8 tool calls
+qwen2.5:3b,F,0,GSE100680,Intellectual Disability,0.667,synonym or code missed,char_3,char_3,,
+qwen2.5:3b,F,0,GSE109048,Coronary artery disease,0.667,synonym or code missed,char_1,char_1,,
+qwen2.5:3b,F,0,GSE123086,Asthma,0.361,values left unlabelled,char_1,char_1,,
+qwen2.5:3b,F,0,GSE131027,Mesothelioma,0.087,values left unlabelled,char_1,char_1,,
+qwen2.5:3b,F,0,GSE131281,Multiple sclerosis,0.047,wrong row,char_21,char_5,,
+qwen2.5:3b,F,0,GSE148810,Lupus (Systemic Lupus Erythematosus),0.233,values left unlabelled,char_1,char_1,lesional skin of a different disease (juvenile dermatomyositis) labelled control,
+qwen2.5:3b,F,0,GSE161533,Stroke,0.0,invalid output,,char_6,stroke taken from a disease history row in a cancer tissue study,no valid submit_answer within 8 tool calls
+qwen2.5:3b,F,0,GSE174570,Liver Cancer,0.0,invalid output,,char_1,,no valid submit_answer within 8 tool calls
+qwen2.5:3b,F,0,GSE185658,Asthma,0.792,synonym or code missed,char_1,char_1,,
+qwen2.5:3b,F,0,GSE227080,COVID-19,0.0,synonym or code missed,char_2,char_2,,
+qwen2.5:3b,F,0,GSE228782,Liver Cancer,0.146,values left unlabelled,char_2,char_2,,
+qwen2.5:3b,F,0,GSE236951,Pancreatic Cancer,0.706,other disease as disease,char_0,char_0,,
+qwen2.5:3b,F,0,GSE26927,Huntingtons Disease,0.0,invalid output,,char_0,,no valid submit_answer within 8 tool calls
+qwen2.5:3b,F,0,GSE273225,Stroke,0.0,invalid output,,char_7,"intracranial bleeding counted as stroke, head trauma as control",no valid submit_answer within 8 tool calls
+qwen2.5:3b,F,0,GSE32924,Eczema,0.0,invalid output,,char_2,non lesional skin (ANL) of eczema patients labelled disease,no valid submit_answer within 8 tool calls
+qwen2.5:3b,F,0,GSE34721,Huntingtons Disease,0.0,invalid output,,char_1,,no valid submit_answer within 8 tool calls
+qwen2.5:3b,F,0,GSE46449,Bipolar disorder,0.932,values left unlabelled,title,char_1,,
+qwen2.5:3b,F,0,GSE65986,Endometrioid Cancer,0.704,other disease as disease,char_0,char_0,,
+qwen2.5:3b,F,0,GSE73551,Endometrioid Cancer,0.0,invalid output,,char_0,,no valid submit_answer within 8 tool calls
+qwen2.5:3b,F,0,GSE73637,Endometrioid Cancer,0.0,invalid output,,char_3,,no valid submit_answer within 8 tool calls
+qwen2.5:3b,F,1,GSE109048,Coronary artery disease,0.667,synonym or code missed,char_1,char_1,,
+qwen2.5:3b,F,1,GSE123086,Asthma,0.066,values left unlabelled,char_1,char_1,,
+qwen2.5:3b,F,1,GSE131027,Mesothelioma,0.859,values left unlabelled,char_1,char_1,,
+qwen2.5:3b,F,1,GSE131281,Multiple sclerosis,0.67,wrong row,char_21,char_5,,
+qwen2.5:3b,F,1,GSE161533,Stroke,0.0,invalid output,,char_6,stroke taken from a disease history row in a cancer tissue study,no valid submit_answer within 8 tool calls
+qwen2.5:3b,F,1,GSE174570,Liver Cancer,0.5,wrong row,char_0,char_1,,
+qwen2.5:3b,F,1,GSE185658,Asthma,0.792,synonym or code missed,char_1,char_1,,
+qwen2.5:3b,F,1,GSE228782,Liver Cancer,0.378,other disease as disease,char_2,char_2,,
+qwen2.5:3b,F,1,GSE236951,Pancreatic Cancer,0.706,values left unlabelled,char_0,char_0,,
+qwen2.5:3b,F,1,GSE273225,Stroke,0.0,invalid output,,char_7,"intracranial bleeding counted as stroke, head trauma as control",no valid submit_answer within 8 tool calls
+qwen2.5:3b,F,1,GSE32924,Eczema,0.406,wrong row,char_3,char_2,non lesional skin (ANL) of eczema patients labelled disease,
+qwen2.5:3b,F,1,GSE34721,Huntingtons Disease,0.0,invalid output,,char_1,,no valid submit_answer within 8 tool calls
+qwen2.5:3b,F,1,GSE46449,Bipolar disorder,0.5,wrong row,char_2,char_1,,
+qwen2.5:3b,F,1,GSE73637,Endometrioid Cancer,0.942,synonym or code missed,char_3,char_3,,
