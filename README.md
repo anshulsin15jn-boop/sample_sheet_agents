@@ -104,8 +104,6 @@ spread. A cohort counts as solved at 95% accuracy or more. Full table:
   what improved the pipeline. My working hypothesis is that a 3B model is too weak to act as a
   checker, but I have not tested that; a larger checker model is the obvious next experiment.
 
-## Error analysis
-
 ### Planned comparison for method F (written before any F results)
 
 Method F is a tool calling agent. Instead of reading all metadata at once, it calls tools to list
