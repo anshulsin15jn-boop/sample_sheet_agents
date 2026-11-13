@@ -1,0 +1,57 @@
+{
+  "started": "2026-11-12 20:06:22",
+  "config": {
+    "backend": "ollama",
+    "model": "qwen2.5:3b",
+    "models": [
+      "qwen2.5:3b",
+      "qwen2.5-coder:3b"
+    ],
+    "main_methods": [
+      "R",
+      "A",
+      "C",
+      "D",
+      "E"
+    ],
+    "ollama": {
+      "url": "http://127.0.0.1:11434",
+      "num_ctx": 8192,
+      "keep_alive": "10m"
+    },
+    "openrouter": {
+      "url": "https://openrouter.ai/api/v1/chat/completions",
+      "model": "qwen/qwen-2.5-coder-32b-instruct:free",
+      "api_key_env": "OPENROUTER_API_KEY",
+      "min_seconds_between_calls": 3.5
+    },
+    "generation": {
+      "temperature": 0.3,
+      "max_tokens": 1000,
+      "base_seed": 20261111,
+      "request_timeout_s": 600
+    },
+    "experiment": {
+      "repeats": 2,
+      "min_free_ram_gb": 1.5
+    },
+    "agent": {
+      "max_tool_calls": 8,
+      "call_timeout_s": 300
+    }
+  },
+  "cohorts": [
+    "GSE120490",
+    "GSE123088",
+    "GSE131282",
+    "GSE135589",
+    "GSE212866"
+  ],
+  "methods": [
+    "F"
+  ],
+  "models": [
+    "qwen2.5-coder:3b"
+  ],
+  "repeats": 1
+}

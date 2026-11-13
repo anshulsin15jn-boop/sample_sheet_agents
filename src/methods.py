@@ -1,4 +1,4 @@
-"""The six methods: R (rules) and the LLM methods A to E.
+"""The methods: R (rules) and the LLM methods A to F.
 
     R  keyword rule, no LLM
     A  zero shot: trait plus unique values, return row and mapping
@@ -6,6 +6,7 @@
     C  structured reasoning: B plus a short reason per value and a checklist
     D  abstention: C plus "unsure" per value and "cannot determine" for the whole cohort
     E  extractor plus checker: C, then a checker agent reviews it and can send it back once
+    F  tool calling agent: works through tools to list rows, read values, check and submit (src/agent.py)
 
 Every LLM answer must be one JSON object. It is checked here; an answer that cannot be parsed or
 has the wrong structure counts as invalid (a failure) and is logged with the reason.
@@ -26,7 +27,7 @@ from .cohort import row_view
 from .prompts import build_messages, checker_messages, revise_message
 from .rules import rule_answer
 
-LLM_METHODS = ["A", "B", "C", "D", "E"]
+LLM_METHODS = ["A", "B", "C", "D", "E", "F"]
 ALL_METHODS = ["R"] + LLM_METHODS
 OK_LABELS = {"disease", "control", "unknown", "unsure"}
 
@@ -139,6 +140,7 @@ class MethodResult:
     reasons: dict = field(default_factory=dict)
     checker: dict = field(default_factory=dict)   # method E only
     raw: list = field(default_factory=list)       # raw model outputs, in order
+    agent: dict = field(default_factory=dict)     # method F only: tool calls, checks, errors
 
     def to_dict(self) -> dict:
         return asdict(self)
@@ -160,6 +162,12 @@ def run_method(method: str, cohort: dict, llm=None, seed: int | None = None, met
         a = rule_answer(cohort)
         return MethodResult("R", a["row"], a["mapping"], a["cannot_determine"], True, "", 0,
                             time.perf_counter() - t0, 0, 0, [], 0)
+    if method == "F":
+        from .agent import MAX_TOOL_CALLS, run_agent
+        acfg = (getattr(llm, "config", None) or {}).get("agent", {})
+        return run_agent(cohort, llm, seed=seed, meta=meta,
+                         max_tool_calls=acfg.get("max_tool_calls", MAX_TOOL_CALLS),
+                         call_timeout_s=acfg.get("call_timeout_s"))
     acc = {"n": 0, "pt": 0, "ct": 0, "raw": []}
     meta = {**(meta or {}), "cohort": cohort["cohort_id"], "method": method}
     msgs = build_messages(method, cohort)

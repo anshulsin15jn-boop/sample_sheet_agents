@@ -33,6 +33,8 @@ class LLMResponse:
     seconds: float
     model: str
     backend: str
+    tool_calls: list = field(default_factory=list)   # [{"name": str, "arguments": any}], tool use only
+    error: str = ""                                  # tool use only: a request the server rejected
 
 
 @dataclass
@@ -127,6 +129,65 @@ class LLMClient:
             backend="openrouter",
         )
 
+    def chat_tools(self, messages: list, tools: list, role: str = "", seed: int | None = None,
+                   meta: dict | None = None, timeout_s: float | None = None) -> LLMResponse:
+        """One chat call with Ollama's `tools` parameter (native tool calling).
+
+        Returns the assistant text and its tool calls. Problems that belong to this one call are
+        returned in `error` instead of raised, so an agent loop can report them to the model and
+        continue: a timeout, or a server error such as a tool call the server could not parse.
+        Only a server that cannot be reached raises (as "LLM call failed"), so a run stops cleanly.
+        """
+        if self.backend != "ollama":
+            raise ValueError("tool calling is implemented for the Ollama backend only")
+        o = self.config["ollama"]
+        options = {"temperature": self.temperature, "num_ctx": o["num_ctx"], "num_predict": self.max_tokens}
+        if seed is not None:
+            options["seed"] = seed
+        body = {"model": self.model, "messages": messages, "tools": tools, "stream": False,
+                "options": options, "keep_alive": o.get("keep_alive", "10m")}
+        t0 = time.perf_counter()
+        text, calls, err, pt, ct = "", [], "", 0, 0
+        for attempt in range(3):
+            try:
+                r = requests.post(f"{o['url']}/api/chat", json=body, timeout=timeout_s or self.timeout)
+            except requests.Timeout:
+                err = f"the model call timed out after {timeout_s or self.timeout} s"
+                break
+            except requests.ConnectionError as e:
+                if attempt == 2:
+                    raise RuntimeError(f"LLM call failed after 3 tries: {e}")
+                time.sleep(5 * (attempt + 1))
+                continue
+            if r.status_code != 200:
+                err = f"server error {r.status_code}: {r.text[:300]}"
+                break
+            data = r.json()
+            msg = data.get("message", {})
+            text = msg.get("content", "") or ""
+            for tc in msg.get("tool_calls") or []:
+                fn = tc.get("function", {}) if isinstance(tc, dict) else {}
+                calls.append({"name": fn.get("name"), "arguments": fn.get("arguments")})
+            pt, ct = int(data.get("prompt_eval_count", 0)), int(data.get("eval_count", 0))
+            break
+        resp = LLMResponse(text=text, prompt_tokens=pt, completion_tokens=ct,
+                           seconds=time.perf_counter() - t0, model=self.model, backend="ollama",
+                           tool_calls=calls, error=err)
+        self._log(CallRecord(time=time.time(), backend="ollama", model=self.model, role=role, seed=seed,
+                             messages=messages,
+                             response=json.dumps({"content": text, "tool_calls": calls, "error": err},
+                                                 ensure_ascii=False),
+                             prompt_tokens=pt, completion_tokens=ct, seconds=round(resp.seconds, 3),
+                             meta=meta or {}))
+        return resp
+
+    def log_tool(self, name: str, arguments, result: str, seconds: float, meta: dict | None = None) -> None:
+        """Log one executed tool call in the same JSONL format as model calls (backend "tool")."""
+        self._log(CallRecord(time=time.time(), backend="tool", model=self.model, role=f"tool:{name}",
+                             seed=None, messages=[{"role": "tool_call", "content": arguments}],
+                             response=result, prompt_tokens=0, completion_tokens=0,
+                             seconds=round(seconds, 4), meta=meta or {}))
+
     # ------------------------------------------------------------------ public
     def chat(self, messages: list, role: str = "", seed: int | None = None,
              meta: dict | None = None, retries: int = 2, json_mode: bool = False) -> LLMResponse:
@@ -154,6 +215,28 @@ class LLMClient:
         self.log_path.parent.mkdir(parents=True, exist_ok=True)
         with open(self.log_path, "a", encoding="utf-8") as f:
             f.write(json.dumps(asdict(rec), ensure_ascii=False) + "\n")
+
+
+class ScriptedToolLLM:
+    """A fake tool calling model for tests. Each scripted turn is a dict with optional "content",
+    "tool_calls" ([{"name", "arguments"}]) and "error". Tool executions are recorded too."""
+
+    def __init__(self, turns: list[dict]):
+        self.turns = list(turns)
+        self.calls: list[dict] = []
+        self.tool_log: list[dict] = []
+        self.model = "scripted"
+        self.backend = "scripted"
+
+    def chat_tools(self, messages, tools, role="", seed=None, meta=None, timeout_s=None) -> LLMResponse:
+        self.calls.append({"role": role, "messages": [dict(m) for m in messages], "tools": tools})
+        t = self.turns.pop(0) if self.turns else {"content": "I am done."}
+        return LLMResponse(text=t.get("content", ""), prompt_tokens=10, completion_tokens=10, seconds=0.0,
+                           model="scripted", backend="scripted", tool_calls=t.get("tool_calls", []),
+                           error=t.get("error", ""))
+
+    def log_tool(self, name, arguments, result, seconds, meta=None) -> None:
+        self.tool_log.append({"name": name, "arguments": arguments, "result": result})
 
 
 class ScriptedLLM:

@@ -27,3 +27,7 @@ generation:
 experiment:
   repeats: 2               # scaled down from 3 to fit the compute budget (see README)
   min_free_ram_gb: 1.5     # the runner pauses and warns if free memory drops below this
+
+agent:                     # method F (tool calling agent)
+  max_tool_calls: 8        # per cohort; a turn without a tool call also uses one step
+  call_timeout_s: 300      # per model call; a timeout is reported to the model as an error
